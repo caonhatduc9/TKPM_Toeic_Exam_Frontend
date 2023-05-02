@@ -1,7 +1,7 @@
 import About from "../pages/About";
 import Home from "../pages/Home";
 import HeaderOnly from "../layouts/HeaderOnly";
-import { FullTest } from "../pages";
+import { DoFullTest, FullTest } from "../pages";
 
 const publicRoutes = [
   {
@@ -16,6 +16,10 @@ const publicRoutes = [
   {
     path: "/fulltest",
     component: FullTest,
+  },
+  {
+    path: "/fulltest/:slug/start",
+    component: DoFullTest,
   },
 ];
 

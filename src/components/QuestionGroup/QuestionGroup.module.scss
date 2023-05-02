@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  margin-bottom: 2rem;
+  .contextWrapper {
+    & .image {
+    }
+  }
+  .questionsWrapper {
+  }
+}

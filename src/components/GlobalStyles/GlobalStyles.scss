@@ -1,4 +1,5 @@
 @import "normalize.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
 
 :root {
   --primary: rgba(254, 44, 85, 1);
@@ -37,4 +38,31 @@ input,
 a[href] {
   text-decoration: none;
   // color: var(--text-color);
+  cursor: pointer;
+  background-color: transparent;
+}
+
+button {
+  font-size: 1.4rem;
+  &:hover {
+    color: #fff;
+    background-color: #35509a;
+    border-color: #35509a;
+  }
+}
+
+audio:not([controls]) {
+  display: none !important;
+}
+
+input[type="range"] {
+  height: 6px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  background-color: #e8f2ff !important;
+  color: #35509a !important;
+  font-weight: 600;
+  border-radius: 16px !important;
 }

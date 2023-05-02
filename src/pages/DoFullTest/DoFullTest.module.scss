@@ -1,0 +1,40 @@
+.heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & h2 {
+    font-weight: 600;
+  }
+  & button {
+    margin-left: 13px;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 600;
+    &:hover {
+      color: white !important;
+    }
+  }
+}
+.testWrapper {
+  .nav {
+    .itemLink {
+      // padding: 4px 15px;
+      margin-right: 0.8rem;
+      background-color: #f8f9fa;
+      border-radius: 25px;
+      white-space: nowrap;
+      color: #1a1a1a;
+      &:hover {
+        background-color: #e7eaf3 !important;
+      }
+      & > a {
+        color: #1a1a1a;
+      }
+      .navItemLink.active {
+        background-color: #e8f2ff !important;
+        color: #35509a !important;
+        font-weight: 500;
+      }
+    }
+  }
+}
