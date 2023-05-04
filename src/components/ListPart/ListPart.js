@@ -1,27 +1,44 @@
 import styles from "./ListPart.module.scss";
 import classNames from "classnames/bind";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import _ from "lodash";
 
 const cx = classNames.bind(styles);
 
 const ListPart = ({ ...props }) => {
   const { title = "Part 1", data } = props;
   // const [isDone, setIsDone] = useState(true);
-  console.log(111, data);
+  // console.log(111, data);
+  const [listQues, setListQues] = useState();
   const isDone = useRef(false);
   const handleClickItem = () => {};
+  useEffect(() => {
+    let temp = [];
+    data &&
+      data.forEach((item) => {
+        temp = _.concat(temp, item?.answers);
+      });
+    setListQues(temp);
+  }, [data]);
+
   return (
     <div className={styles.wrapper}>
       <h6>{title}</h6>
       <div className={styles.inner}>
-        <span
-          className={cx("list-part-item", {
-            // ["done"]: isDone.current,
+        {listQues &&
+          listQues.map((item) => {
+            return (
+              <span
+                key={item?.number}
+                className={cx("list-part-item", {
+                  // ["done"]: isDone.current,
+                })}
+                onClick={handleClickItem}
+              >
+                {item?.number}
+              </span>
+            );
           })}
-          onClick={handleClickItem}
-        >
-          1
-        </span>
       </div>
     </div>
   );

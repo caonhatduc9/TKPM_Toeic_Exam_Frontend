@@ -1,5 +1,6 @@
 import styles from "./QuestionGroup.module.scss";
 import Question from "../Question/Question";
+import { Image } from "react-bootstrap";
 const QuestionGroup = ({ ...props }) => {
   const answersEx = [
     {
@@ -72,6 +73,7 @@ const QuestionGroup = ({ ...props }) => {
     },
   ];
   const { isImage, isTwoCols, data = dataTemplatePart67 } = props;
+  console.log(data);
   return (
     <div className={styles.wrapper}>
       {isTwoCols ? (
@@ -108,23 +110,31 @@ const QuestionGroup = ({ ...props }) => {
             })}
         </>
       ) : (
-        <>
-          <div className={styles.contextWrapper}>
-            {isImage ? (
-              <div className={styles.contextContent}>
-                <image
-                  src="https://study4.com/media/tez_media1/img/ets_toeic_2022_test_1_95_97.png"
-                  alt="image"
-                />
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
-          <div className={styles.questionsWrapper}>
-            <Question />
-          </div>
-        </>
+        <div className={styles.contentImageWrapper}>
+          {data &&
+            data.map((ques) => {
+              return (
+                <>
+                  <div className={styles.contextWrapper}>
+                    <div className={styles.contextContent}>
+                      {ques.imageURL ? (
+                        <Image src={ques.imageURL} alt="image" />
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                  </div>
+                  <div className={styles.questionsWrapper}>
+                    <Question
+                      text={ques.answers[0].text}
+                      answers={ques.answers[0].answers}
+                      number={ques.id}
+                    />
+                  </div>
+                </>
+              );
+            })}
+        </div>
       )}
     </div>
   );

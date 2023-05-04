@@ -20,7 +20,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
+  margin: 20px 10px 0;
   & .testContent {
     max-width: 100%;
     width: 100%;
@@ -28,7 +28,7 @@
     min-width: 0;
 
     background-color: #fff;
-    padding: 1rem;
+    padding: 1.6rem;
     border-radius: 0.45rem;
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 0 0 rgba(143, 156, 173, 0.2);
@@ -64,6 +64,7 @@
   will-change: min-height;
   z-index: 99;
   .naviInner {
+    margin-right: 16px;
     will-change: position, transform;
     padding: 1rem;
     background-color: #fff;
@@ -71,6 +72,18 @@
     position: relative;
     transform: translate3d(0px, 0px, 0px);
     .navMain {
+      & > button {
+        width: 100%;
+        margin: 14px 0;
+        font-weight: 600;
+        color: #35509a;
+        border-color: #35509a;
+        &:hover {
+          color: #fff;
+          background-color: #35509a;
+          border-color: #35509a;
+        }
+      }
     }
   }
 }
