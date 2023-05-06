@@ -13,6 +13,8 @@ import {
   Question,
   QuestionGroup,
 } from "../../components";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const DoFullTest = () => {
   const answersExPart1 = [
     {
@@ -596,6 +598,26 @@ const DoFullTest = () => {
       isTwoCols: true,
     },
   ];
+  const [listResult, setListResult] = useState([]);
+  const [tabIndex, setTabIndex] = useState(0);
+  const [isTimeup, setIsTimeup] = useState(false);
+  const timer = useRef(0);
+  const navigate = useNavigate();
+  useEffect(() => {
+    console.log(111, listResult);
+  }, [listResult]);
+  const handleSelectTab = (index) => {
+    setTabIndex(index);
+  };
+  const handleClickSubmit = () => {
+    if (window.confirm("Bạn có chắc chắn muốn nộp bài?") === true) {
+      console.log("Done");
+      navigate(`/fulltest/ets-toeic-2022-test-1/result`);
+    }
+  };
+  const handleTimeup = useCallback(() => {
+    setIsTimeup(true);
+  }, []);
   return (
     <Container fluid>
       <div className={styles.heading}>
@@ -606,7 +628,7 @@ const DoFullTest = () => {
         <div className={styles.testContent}>
           <Audio />
           <div className={styles.nav}>
-            <Tabs>
+            <Tabs selectedIndex={tabIndex} onSelect={(i) => handleSelectTab(i)}>
               <TabList>
                 {parts &&
                   parts.length > 0 &&
@@ -627,6 +649,13 @@ const DoFullTest = () => {
                         <QuestionGroup
                           data={item?.questions}
                           isTwoCols={item?.isTwoCols}
+                          listResult={listResult}
+                          onSetListResult={setListResult}
+                          isFullTest={true}
+                          // isFullTest={false}
+                          indexTab={tabIndex}
+                          onSelectTab={handleSelectTab}
+                          isTimeup={isTimeup}
                         />
                       </div>
                     </TabPanel>
@@ -639,8 +668,12 @@ const DoFullTest = () => {
           <div className={styles.naviInner}>
             <div className={styles.navMain}>
               <div>Thời gian còn lại:</div>
-              <CountDownTimer />
-              <Button variant="outline-primary" size="lg">
+              <CountDownTimer onComplete={handleTimeup} timer={timer.current} />
+              <Button
+                variant="outline-primary"
+                size="lg"
+                onClick={handleClickSubmit}
+              >
                 {" "}
                 NỘP BÀI
               </Button>
@@ -651,6 +684,7 @@ const DoFullTest = () => {
                       data={item?.questions}
                       key={index}
                       title={item?.title}
+                      listRes={listResult}
                     />
                   );
                 })}

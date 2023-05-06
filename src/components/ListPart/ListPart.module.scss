@@ -24,6 +24,11 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      &.done {
+        background-color: #35509a !important;
+        color: #fff;
+        border-color: #35509a;
+      }
       &:hover {
         background-color: #35509a !important;
         color: #fff;

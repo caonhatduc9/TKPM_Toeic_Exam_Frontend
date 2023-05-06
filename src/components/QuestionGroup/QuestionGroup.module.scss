@@ -29,3 +29,14 @@
     }
   }
 }
+.nextBtn {
+  text-align: right;
+  & > div {
+    color: #35509a;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+}

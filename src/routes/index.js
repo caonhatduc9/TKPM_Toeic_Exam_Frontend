@@ -2,6 +2,7 @@ import About from "../pages/About";
 import Home from "../pages/Home";
 import HeaderOnly from "../layouts/HeaderOnly";
 import { DoFullTest, FullTest } from "../pages";
+import Result from "../pages/Result";
 
 const publicRoutes = [
   {
@@ -20,6 +21,10 @@ const publicRoutes = [
   {
     path: "/fulltest/:slug/start",
     component: DoFullTest,
+  },
+  {
+    path: "/fulltest/:slug/result",
+    component: Result,
   },
 ];
 

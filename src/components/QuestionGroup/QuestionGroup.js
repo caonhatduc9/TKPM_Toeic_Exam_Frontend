@@ -1,6 +1,9 @@
 import styles from "./QuestionGroup.module.scss";
 import Question from "../Question/Question";
 import { Image } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Audio from "../Audio";
 const QuestionGroup = ({ ...props }) => {
   const answersEx = [
     {
@@ -72,8 +75,21 @@ const QuestionGroup = ({ ...props }) => {
       ],
     },
   ];
-  const { isImage, isTwoCols, data = dataTemplatePart67 } = props;
-  console.log(data);
+  const {
+    isImage,
+    isTwoCols,
+    data = dataTemplatePart67,
+    listResult,
+    onSetListResult,
+    isFullTest,
+    indexTab,
+    onSelectTab,
+    isTimeup,
+  } = props;
+  const handleClickNext = () => {
+    onSelectTab(indexTab + 1);
+  };
+
   return (
     <div className={styles.wrapper}>
       {isTwoCols ? (
@@ -93,12 +109,15 @@ const QuestionGroup = ({ ...props }) => {
                     <div className={styles.right}>
                       <div className={styles.questionsWrapper}>
                         {item.answers &&
-                          item.answers.map((answer) => {
+                          item.answers.map((answer, index) => {
                             return (
                               <Question
                                 number={answer.number}
                                 text={answer.text}
                                 answers={answer.answers}
+                                key={index}
+                                listRes={listResult}
+                                onSet={onSetListResult}
                               />
                             );
                           })}
@@ -112,11 +131,12 @@ const QuestionGroup = ({ ...props }) => {
       ) : (
         <div className={styles.contentImageWrapper}>
           {data &&
-            data.map((ques) => {
+            data.map((ques, index) => {
               return (
-                <>
+                <div key={index}>
                   <div className={styles.contextWrapper}>
                     <div className={styles.contextContent}>
+                      {!isFullTest ? <Audio /> : <></>}
                       {ques.imageURL ? (
                         <Image src={ques.imageURL} alt="image" />
                       ) : (
@@ -129,12 +149,22 @@ const QuestionGroup = ({ ...props }) => {
                       text={ques.answers[0].text}
                       answers={ques.answers[0].answers}
                       number={ques.id}
+                      listRes={listResult}
+                      onSet={onSetListResult}
+                      isTimeup={isTimeup}
                     />
                   </div>
-                </>
+                </div>
               );
             })}
         </div>
+      )}
+      {isFullTest && indexTab !== 6 ? (
+        <div className={styles.nextBtn}>
+          <div onClick={handleClickNext}>TIẾP THEO</div>
+        </div>
+      ) : (
+        <></>
       )}
     </div>
   );

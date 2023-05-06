@@ -7,7 +7,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import styles from "./Audio.module.scss";
-const Audio = () => {
+const Audio = ({ ...props }) => {
+  const {
+    source = "https://study4.com/media/tez_media1/sound/ets_toeic_2022_test_2_32_34.mp3",
+  } = props;
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(50);
   const [showPause, setShowPause] = useState(false);
@@ -142,11 +145,7 @@ const Audio = () => {
           </div>
         </div>
       </div>
-      <audio
-        src="https://study4.com/media/tez_media1/sound/ets_toeic_2022_test_2_32_34.mp3"
-        preload="metadata"
-        ref={audioRef}
-      ></audio>
+      <audio src={source} preload="metadata" ref={audioRef}></audio>
     </div>
   );
 };
