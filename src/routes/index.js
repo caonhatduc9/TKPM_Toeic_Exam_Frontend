@@ -1,8 +1,14 @@
 import About from "../pages/About";
 import Home from "../pages/Home";
 import HeaderOnly from "../layouts/HeaderOnly";
-import { DoFullTest, FullTest } from "../pages";
-import Result from "../pages/Result";
+import {
+  ChooseMiniTest,
+  DoFullTest,
+  FullTest,
+  Result,
+  MiniTest,
+  DoMiniTest,
+} from "../pages";
 
 const publicRoutes = [
   {
@@ -24,6 +30,22 @@ const publicRoutes = [
   },
   {
     path: "/fulltest/:slug/result",
+    component: Result,
+  },
+  {
+    path: "/minitest",
+    component: MiniTest,
+  },
+  {
+    path: "/minitest/:numpart",
+    component: ChooseMiniTest,
+  },
+  {
+    path: "/minitest/:numpart/:titletest/start",
+    component: DoMiniTest,
+  },
+  {
+    path: "/minitest/:numpart/:titletest/result",
     component: Result,
   },
 ];

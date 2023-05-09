@@ -1,21 +1,17 @@
 import Container from "react-bootstrap/Container";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import styles from "./DoFullTest.module.scss";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "../../components/Card/Card";
-import { Button, Nav } from "react-bootstrap";
+import styles from "./DoMiniTest.module.scss";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { Button } from "react-bootstrap";
 import {
   Audio,
   CountDownTimer,
   ListPart,
-  Question,
   QuestionGroup,
 } from "../../components";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-const DoFullTest = () => {
+
+const DoMiniTest = () => {
   const answersExPart1 = [
     {
       value: "A",
@@ -599,21 +595,21 @@ const DoFullTest = () => {
     },
   ];
   const [listResult, setListResult] = useState([]);
-  const [tabIndex, setTabIndex] = useState(0);
   const [isTimeup, setIsTimeup] = useState(false);
   const timer = useRef(0);
+  const { numpart, titletest } = useParams();
+  const titleTest =
+    `PART ${numpart.charAt(numpart.length - 1)} - ` +
+    titletest?.split("-")?.join(" ")?.toUpperCase();
   const navigate = useNavigate();
   // useEffect(() => {
   //   console.log(111, listResult);
   // }, [listResult]);
-  const handleSelectTab = (index) => {
-    setTabIndex(index);
-  };
-  const { slug } = useParams();
+
   const handleClickSubmit = () => {
     if (window.confirm("Bạn có chắc chắn muốn nộp bài?") === true) {
       // console.log("Done");
-      navigate(`/fulltest/${slug}/result`);
+      navigate(`/minitest/${numpart}/${titletest}/result`);
     }
   };
   const handleTimeup = useCallback(() => {
@@ -631,50 +627,24 @@ const DoFullTest = () => {
   return (
     <Container fluid>
       <div className={styles.heading}>
-        <h2>ETS TOEIC 2022 Test 1</h2>
+        <h2>{titleTest}</h2>
         <Button variant="outline-primary" onClick={handleClickExit}>
           Thoát
         </Button>
       </div>
       <div className={styles.testWrapper}>
         <div className={styles.testContent}>
-          <Audio />
-          <div className={styles.nav}>
-            <Tabs selectedIndex={tabIndex} onSelect={(i) => handleSelectTab(i)}>
-              <TabList>
-                {parts &&
-                  parts.length > 0 &&
-                  parts.map((item, index) => {
-                    return (
-                      <Tab key={item.id} className={styles.itemLink}>
-                        {item?.title}
-                      </Tab>
-                    );
-                  })}
-              </TabList>
-              {parts &&
-                parts.length > 0 &&
-                parts.map((item, index) => {
-                  return (
-                    <TabPanel key={item.id}>
-                      <div className={styles.content}>
-                        <QuestionGroup
-                          data={item?.questions}
-                          isTwoCols={item?.isTwoCols}
-                          listResult={listResult}
-                          onSetListResult={setListResult}
-                          isFullTest={true}
-                          // isFullTest={false}
-                          indexTab={tabIndex}
-                          onSelectTab={handleSelectTab}
-                          isTimeup={isTimeup}
-                        />
-                      </div>
-                    </TabPanel>
-                  );
-                })}
-            </Tabs>
-          </div>
+          <QuestionGroup
+            // data={item?.questions}
+            // isTwoCols={item?.isTwoCols}
+            listResult={listResult}
+            onSetListResult={setListResult}
+            // isFullTest={true}
+            // // isFullTest={false}
+            // indexTab={tabIndex}
+            // onSelectTab={handleSelectTab}
+            isTimeup={isTimeup}
+          />
         </div>
         <div className={styles.naviWrapper}>
           <div className={styles.naviInner}>
@@ -707,4 +677,4 @@ const DoFullTest = () => {
     </Container>
   );
 };
-export default DoFullTest;
+export default DoMiniTest;

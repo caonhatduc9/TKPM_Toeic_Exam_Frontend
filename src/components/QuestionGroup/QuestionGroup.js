@@ -31,9 +31,35 @@ const QuestionGroup = ({ ...props }) => {
       id: "question-38131-D",
     },
   ];
+  const answersEx2 = [
+    {
+      value: "A",
+      title: "A move to a new a city",
+      name: "question-38131B",
+      id: "question-38131-A2",
+    },
+    {
+      value: "B",
+      title: "A move to a new a city",
+      name: "question-38131B",
+      id: "question-38131-B2",
+    },
+    {
+      value: "C",
+      title: "A move to a new a city",
+      name: "question-38131B",
+      id: "question-38131-C2",
+    },
+    {
+      value: "D",
+      title: "A move to a new a city",
+      name: "question-38131B",
+      id: "question-38131-D2",
+    },
+  ];
   const dataTemplatePart67 = [
     {
-      id: 131133,
+      id: 131,
       ques: "To continue providing the highest level of ----- (131) to our corporate tenants, we have scheduled the south lobby restrooms for maintenance this weekend, May 13 and May 14. ----- (132)this time, the restrooms will be out of order, so tenants andtheir guests should instead use the facilities in the northlobby. We ----- (133) for any inconvenience this might cause.-----(134). Denville Property Management Partners",
       answers: [
         {
@@ -54,23 +80,23 @@ const QuestionGroup = ({ ...props }) => {
       ],
     },
     {
-      id: 134136,
+      id: 134,
       ques: "To continue providing the highest level of ----- (131) to our corporate tenants, we have scheduled the south lobby restrooms for maintenance this weekend, May 13 and May 14. ----- (132)this time, the restrooms will be out of order, so tenants andtheir guests should instead use the facilities in the northlobby. We ----- (133) for any inconvenience this might cause.-----(134). Denville Property Management Partners",
       answers: [
         {
           number: 134,
           text: "What is the woman preparing for?",
-          answers: answersEx,
+          answers: answersEx2,
         },
         {
           number: 135,
           text: "What is the woman preparing for?",
-          answers: answersEx,
+          answers: answersEx2,
         },
         {
           number: 136,
           text: "What is the woman preparing for?",
-          answers: answersEx,
+          answers: answersEx2,
         },
       ],
     },
