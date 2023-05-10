@@ -8,6 +8,7 @@ import {
   Result,
   MiniTest,
   DoMiniTest,
+  ResultDetail,
 } from "../pages";
 
 const publicRoutes = [
@@ -47,6 +48,14 @@ const publicRoutes = [
   {
     path: "/minitest/:numpart/:titletest/result",
     component: Result,
+  },
+  {
+    path: "/fulltest/:slug/result/detail",
+    component: ResultDetail,
+  },
+  {
+    path: "/minitest/:numpart/:titletest/result/detail",
+    component: ResultDetail,
   },
 ];
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger-with-children */
 import styles from "./QuestionGroup.module.scss";
 import Question from "../Question/Question";
 import { Image } from "react-bootstrap";
@@ -102,7 +103,7 @@ const QuestionGroup = ({ ...props }) => {
     },
   ];
   const {
-    isImage,
+    isListening,
     isTwoCols,
     data = dataTemplatePart67,
     listResult,
@@ -111,17 +112,31 @@ const QuestionGroup = ({ ...props }) => {
     indexTab,
     onSelectTab,
     isTimeup,
+    isShowResult,
+    resultDetail,
   } = props;
   const handleClickNext = () => {
     onSelectTab(indexTab + 1);
   };
+  const dataHaveResultDetail = data.map((item) => {
+    const temp =
+      resultDetail && resultDetail.find((res) => res?.number === item?.number);
+    if (item.number === temp?.number) {
+      return {
+        ...item,
+        detail: temp?.detail,
+        result: temp?.result,
+        transcript: temp?.transcript,
+      };
+    } else return item;
+  });
 
   return (
     <div className={styles.wrapper}>
       {isTwoCols ? (
         <>
-          {data &&
-            data.map((item) => {
+          {dataHaveResultDetail &&
+            dataHaveResultDetail.map((item) => {
               return (
                 <div className={styles.inner} key={item.id}>
                   <div className={styles.twoCols}>
@@ -144,10 +159,38 @@ const QuestionGroup = ({ ...props }) => {
                                 key={index}
                                 listRes={listResult}
                                 onSet={onSetListResult}
+                                isTimeup={isTimeup}
                               />
                             );
                           })}
                       </div>
+                      {isShowResult ? (
+                        <div className={styles.detail}>
+                          <div className={styles.textSuccess}>
+                            Đáp án: {item?.result}
+                          </div>
+                          <div className={styles.resultDetail}>
+                            {item?.detail ? (
+                              <>
+                                <p>Giải thích chi tiết đáp án:</p>
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html:
+                                      item?.detail ||
+                                      `<p>Hi&#7879;n t&#7841;i ch&#432;a c&oacute; l&#7901;i gi&#7843;i chi ti&#7871;t cho c&acirc;u h&#7887;i n&agrave;y</p>`,
+                                  }}
+                                >
+                                  {/* {item?.detail} */}
+                                </div>
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -156,8 +199,8 @@ const QuestionGroup = ({ ...props }) => {
         </>
       ) : (
         <div className={styles.contentImageWrapper}>
-          {data &&
-            data.map((ques, index) => {
+          {dataHaveResultDetail &&
+            dataHaveResultDetail.map((ques, index) => {
               return (
                 <div key={index}>
                   <div className={styles.contextWrapper}>
@@ -165,6 +208,16 @@ const QuestionGroup = ({ ...props }) => {
                       {!isFullTest ? <Audio /> : <></>}
                       {ques.imageURL ? (
                         <Image src={ques.imageURL} alt="image" />
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                    <div className={styles.contextTranscript}>
+                      {isShowResult && isListening ? (
+                        <div className={styles.transcriptContent}>
+                          {ques?.transcript ? <p>Transcript:</p> : <></>}
+                          <div>{ques?.transcript}</div>
+                        </div>
                       ) : (
                         <></>
                       )}
@@ -180,6 +233,33 @@ const QuestionGroup = ({ ...props }) => {
                       isTimeup={isTimeup}
                     />
                   </div>
+                  {isShowResult ? (
+                    <div className={styles.detail}>
+                      <div className={styles.textSuccess}>
+                        Đáp án: {ques?.result}
+                      </div>
+                      <div className={styles.resultDetail}>
+                        {ques?.detail ? (
+                          <>
+                            <p>Giải thích chi tiết đáp án:</p>
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  ques?.detail ||
+                                  `<p>Hi&#7879;n t&#7841;i ch&#432;a c&oacute; l&#7901;i gi&#7843;i chi ti&#7871;t cho c&acirc;u h&#7887;i n&agrave;y</p>`,
+                              }}
+                            >
+                              {/* {ques?.detail} */}
+                            </div>
+                          </>
+                        ) : (
+                          <></>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               );
             })}

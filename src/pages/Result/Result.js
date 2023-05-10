@@ -3,7 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "../../components/Card/Card";
 import styles from "./Result.module.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "react-bootstrap";
 import { faBan, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
@@ -27,6 +27,16 @@ const Result = () => {
     incorrect: 80,
     skip: 0,
   };
+  const params = useParams();
+  const navigate = useNavigate();
+
+  const handleClickDetail = () => {
+    if (numpart && titletest) {
+      navigate(`/minitest/${numpart}/${titletest}/result/detail`);
+    } else {
+      navigate(`/fulltest/${slug}/result/detail`);
+    }
+  };
 
   return (
     <Container fluid="lg">
@@ -34,7 +44,7 @@ const Result = () => {
         <div className={styles.content}>
           <h2>Kết quả luyện tập: {title} </h2>
           <div>
-            <Button variant="primary" href="/xemdapan">
+            <Button variant="primary" onClick={handleClickDetail}>
               Xem đáp án
             </Button>
             {/* <Link to="/datcauhoi" /> */}

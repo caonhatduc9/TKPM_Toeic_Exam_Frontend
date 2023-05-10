@@ -29,6 +29,20 @@
         color: #fff;
         border-color: #35509a;
       }
+      &.isCorrect {
+        background-color: #ddfbe1;
+        border-color: #3cb46e;
+      }
+      &.isInCorrect {
+        background-color: #ffe8e8;
+        border-color: #e43a45;
+      }
+      &.isSkip {
+        border-color: #71869d;
+        color: #71869d;
+        // border-color: #f7faff;
+        background-color: white;
+      }
       &:hover {
         background-color: #35509a !important;
         color: #fff;
