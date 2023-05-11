@@ -1,4 +1,5 @@
 export { default as About } from "./About";
+export { default as NotFound } from "./NotFound";
 export { default as Home } from "./Home";
 export { default as FullTest } from "./FullTest";
 export { default as DoFullTest } from "./DoFullTest";
@@ -7,3 +8,4 @@ export { default as MiniTest } from "./MiniTest";
 export { default as ChooseMiniTest } from "./ChooseMiniTest";
 export { default as Result } from "./Result";
 export { default as ResultDetail } from "./ResultDetail";
+export { default as ResultDetailMiniTest } from "./ResultDetailMiniTest";

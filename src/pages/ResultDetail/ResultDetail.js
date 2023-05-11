@@ -757,15 +757,8 @@ const ResultDetail = () => {
     setTabIndex(index);
   };
   const { slug } = useParams();
-  const handleClickSubmit = () => {
-    if (window.confirm("Bạn có chắc chắn muốn nộp bài?") === true) {
-      // console.log("Done");
-      navigate(`/fulltest/${slug}/result`);
-    }
-  };
-  const handleTimeup = useCallback(() => {
-    setIsTimeup(true);
-  }, []);
+  const title = slug?.split("-")?.join(" ")?.toUpperCase();
+
   const handleClickExit = () => {
     navigate(`/fulltest/${slug}/result`);
   };
@@ -773,7 +766,7 @@ const ResultDetail = () => {
   return (
     <Container fluid>
       <div className={styles.heading}>
-        <h2>ETS TOEIC 2022 Test 1</h2>
+        <h2>{title}</h2>
         <Button variant="outline-primary" onClick={handleClickExit}>
           Quay về trang kết quả
         </Button>

@@ -9,9 +9,15 @@ import {
   MiniTest,
   DoMiniTest,
   ResultDetail,
+  ResultDetailMiniTest,
+  NotFound,
 } from "../pages";
 
 const publicRoutes = [
+  {
+    path: "*",
+    component: NotFound,
+  },
   {
     path: "/",
     component: Home,
@@ -55,7 +61,7 @@ const publicRoutes = [
   },
   {
     path: "/minitest/:numpart/:titletest/result/detail",
-    component: ResultDetail,
+    component: ResultDetailMiniTest,
   },
 ];
 

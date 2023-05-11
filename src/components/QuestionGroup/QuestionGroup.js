@@ -81,7 +81,7 @@ const QuestionGroup = ({ ...props }) => {
       ],
     },
     {
-      id: 134,
+      id: 132,
       ques: "To continue providing the highest level of ----- (131) to our corporate tenants, we have scheduled the south lobby restrooms for maintenance this weekend, May 13 and May 14. ----- (132)this time, the restrooms will be out of order, so tenants andtheir guests should instead use the facilities in the northlobby. We ----- (133) for any inconvenience this might cause.-----(134). Denville Property Management Partners",
       answers: [
         {
@@ -115,6 +115,7 @@ const QuestionGroup = ({ ...props }) => {
     isShowResult,
     resultDetail,
   } = props;
+
   const handleClickNext = () => {
     onSelectTab(indexTab + 1);
   };
@@ -205,7 +206,7 @@ const QuestionGroup = ({ ...props }) => {
                 <div key={index}>
                   <div className={styles.contextWrapper}>
                     <div className={styles.contextContent}>
-                      {!isFullTest ? <Audio /> : <></>}
+                      {!isFullTest && isListening ? <Audio /> : <></>}
                       {ques.imageURL ? (
                         <Image src={ques.imageURL} alt="image" />
                       ) : (

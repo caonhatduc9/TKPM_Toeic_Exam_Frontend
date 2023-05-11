@@ -21,7 +21,7 @@ const CountDownTimer = ({ ...props }) => {
       // console.log(timer.current);
       // clearInterval(timer.current);
       // console.log(Date.now());
-      console.log(timer + 1);
+      // console.log(timer + 1);
       return <TimeUp />;
     }
     if (hours >= 1) {
