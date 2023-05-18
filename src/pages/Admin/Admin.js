@@ -9,9 +9,11 @@ import { AiOutlineFilter } from 'react-icons/ai';
 import { FaSearch } from 'react-icons/fa';
 import { Nav, Tab } from "react-bootstrap";
 import style from './Admin.module.scss';
+import { useParams } from 'react-router-dom';
 
 function Admin(props) {
     //   const { data } = props;
+    const {type}=useParams();
     const itemsPerPage = 4;
     const title_test = [
         "Number", "Name", "Created Date", "Modifiled Date",

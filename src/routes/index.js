@@ -13,9 +13,16 @@ import {
   Admin,
   Blog,
   DetailBlog,
+  ResultDetail,
+  ResultDetailMiniTest,
+  NotFound,
 } from "../pages";
 
 const publicRoutes = [
+  {
+    path: "*",
+    component: NotFound,
+  },
   {
     path: "/",
     component: Home,
@@ -72,6 +79,14 @@ const publicRoutes = [
   {
     path: "/minitest/:numpart/:titletest/result",
     component: Result,
+  },
+  {
+    path: "/fulltest/:slug/result/detail",
+    component: ResultDetail,
+  },
+  {
+    path: "/minitest/:numpart/:titletest/result/detail",
+    component: ResultDetailMiniTest,
   },
 ];
 

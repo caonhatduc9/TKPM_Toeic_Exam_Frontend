@@ -98,3 +98,19 @@ input[type="range"] {
   text-align: center;
   margin-bottom: 24px;
 }
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 100px;
+  text-align: center;
+  h2 {
+    font-size: 5rem;
+  }
+  p,
+  div {
+    font-size: 2rem;
+  }
+}

@@ -556,42 +556,49 @@ const DoMiniTest = () => {
       id: "partcontent1",
       questions: dataTemplatePart1,
       isTwoCols: false,
+      isListening: true,
     },
     {
       title: "Part 2",
       id: "partcontent2",
       questions: dataTemplatePart2,
       isTwoCols: false,
+      isListening: true,
     },
     {
       title: "Part 3",
       id: "partcontent3",
       questions: dataTemplatePart3,
       isTwoCols: false,
+      isListening: true,
     },
     {
       title: "Part 4",
       id: "partcontent4",
       questions: dataTemplatePart4,
       isTwoCols: false,
+      isListening: true,
     },
     {
       title: "Part 5",
       id: "partcontent5",
       questions: dataTemplatePart5,
       isTwoCols: false,
+      isListening: false,
     },
     {
       title: "Part 6",
       id: "partcontent6",
       questions: dataTemplatePart6,
       isTwoCols: true,
+      isListening: false,
     },
     {
       title: "Part 7",
       id: "partcontent7",
       questions: dataTemplatePart7,
       isTwoCols: true,
+      isListening: false,
     },
   ];
   const [listResult, setListResult] = useState([]);
@@ -624,6 +631,25 @@ const DoMiniTest = () => {
       navigate("/fulltest");
     }
   };
+  const numPart = +numpart.charAt(numpart.length - 1);
+  const dataTemplate = () => {
+    if (numPart === 1) {
+      return parts[0];
+    } else if (numPart === 2) {
+      return parts[1];
+    } else if (numPart === 3) {
+      return parts[2];
+    } else if (numPart === 4) {
+      return parts[3];
+    } else if (numPart === 5) {
+      return parts[4];
+    } else if (numPart === 6) {
+      return parts[5];
+    } else if (numPart === 7) {
+      return parts[6];
+    }
+  };
+
   return (
     <Container fluid>
       <div className={styles.heading}>
@@ -635,8 +661,9 @@ const DoMiniTest = () => {
       <div className={styles.testWrapper}>
         <div className={styles.testContent}>
           <QuestionGroup
-            // data={item?.questions}
-            // isTwoCols={item?.isTwoCols}
+            isListening={dataTemplate()?.isListening}
+            data={dataTemplate()?.questions}
+            isTwoCols={dataTemplate()?.isTwoCols}
             listResult={listResult}
             onSetListResult={setListResult}
             // isFullTest={true}
@@ -659,17 +686,11 @@ const DoMiniTest = () => {
                 {" "}
                 NỘP BÀI
               </Button>
-              {parts &&
-                parts.map((item, index) => {
-                  return (
-                    <ListPart
-                      data={item?.questions}
-                      key={index}
-                      title={item?.title}
-                      listRes={listResult}
-                    />
-                  );
-                })}
+              <ListPart
+                data={dataTemplate()?.questions}
+                title={dataTemplate()?.title}
+                listRes={listResult}
+              />
             </div>
           </div>
         </div>

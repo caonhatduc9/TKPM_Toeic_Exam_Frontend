@@ -14,12 +14,17 @@
     h2 {
       font-weight: 600;
     }
-    a {
+    button {
       background-color: #35509a;
       border-color: #35509a;
       font-weight: 600;
       margin-bottom: 16px;
       margin-top: 16px;
+      &:hover {
+        color: #fff;
+        background-color: #2b417e;
+        border-color: #283c74;
+      }
     }
     .scoreDetail {
       display: flex;

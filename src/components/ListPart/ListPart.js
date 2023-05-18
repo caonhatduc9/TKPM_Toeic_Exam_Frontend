@@ -6,7 +6,14 @@ import _ from "lodash";
 const cx = classNames.bind(styles);
 
 const ListPart = ({ ...props }) => {
-  const { title = "Part 1", data, listRes } = props;
+  const {
+    title = "Part 1",
+    data,
+    listRes,
+    isShowResult,
+    userResult,
+    resultDetail,
+  } = props;
   // const [isDone, setIsDone] = useState(true);
   // console.log(111, listRes);
   const [listQues, setListQues] = useState();
@@ -31,24 +38,84 @@ const ListPart = ({ ...props }) => {
       return true;
     } else return false;
   };
-
+  // console.log(listQues);
+  const handleCheckResult = (number) => {
+    const user = userResult.find((item) => {
+      return item.number === number;
+    });
+    const system = resultDetail.find((item) => {
+      return item.number === number;
+    });
+    if (
+      user?.result === system?.result &&
+      user?.result &&
+      system?.result !== undefined
+    ) {
+      return true;
+    } else return false;
+  };
+  const handleCheckResultInCorrect = (number) => {
+    const user = userResult.find((item) => {
+      return item.number === number;
+    });
+    const system = resultDetail.find((item) => {
+      return item.number === number;
+    });
+    if (user?.result === system?.result) {
+      return false;
+    } else return true;
+  };
+  const handleCheckResultSkip = (number) => {
+    const user = userResult.find((item) => {
+      return item.number === number;
+    });
+    const system = resultDetail.find((item) => {
+      return item.number === number;
+    });
+    if ((user?.result && system?.result) === undefined) {
+      return true;
+    } else return false;
+  };
   return (
     <div className={styles.wrapper}>
       <h6>{title}</h6>
       <div className={styles.inner}>
         {listQues &&
           listQues.map((item) => {
-            return (
-              <span
-                key={item?.number}
-                className={cx("list-part-item", {
-                  done: handleColorQues(item.number),
-                })}
-                onClick={handleClickItem}
-              >
-                {item?.number}
-              </span>
-            );
+            if (isShowResult && userResult && resultDetail) {
+              return (
+                <span
+                  key={item?.number}
+                  className={cx(
+                    "list-part-item",
+                    {
+                      isCorrect: handleCheckResult(item.number),
+                    },
+                    {
+                      isInCorrect: handleCheckResultInCorrect(item.number),
+                    },
+                    {
+                      isSkip: handleCheckResultSkip(item.number),
+                    }
+                  )}
+                  onClick={handleClickItem}
+                >
+                  {item?.number}
+                </span>
+              );
+            } else {
+              return (
+                <span
+                  key={item?.number}
+                  className={cx("list-part-item", {
+                    done: handleColorQues(item.number),
+                  })}
+                  onClick={handleClickItem}
+                >
+                  {item?.number}
+                </span>
+              );
+            }
           })}
       </div>
     </div>

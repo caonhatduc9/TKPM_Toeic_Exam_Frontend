@@ -40,3 +40,28 @@
     font-weight: 600;
   }
 }
+
+.contextTranscript {
+  .transcriptContent {
+    & > p {
+      font-weight: 600;
+      color: #35509a;
+    }
+  }
+}
+
+.detail {
+  .textSuccess {
+    color: #3cb46e !important;
+  }
+  .resultDetail {
+    margin-bottom: 2.5rem;
+    & > p {
+      margin: 10px 0;
+      font-weight: 600;
+      color: #35509a;
+    }
+    & > div {
+    }
+  }
+}
