@@ -1,0 +1,39 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2rem;
+    padding-right: 2rem;
+
+    padding-top: 3rem;
+    box-shadow: 2px 0 3px gray;
+
+    .footerLeft {
+        display: flex;
+
+        ul {
+            list-style: none;
+            margin-right: 5rem;
+
+            li:hover {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: blue;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .footerRight {
+        margin-right: 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        
+
+        .logos {
+            margin-top: 1rem;
+        }
+    }
+}

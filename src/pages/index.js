@@ -15,3 +15,4 @@ export {default as DetailBlog} from "./DetailBlog";
 
 export { default as ResultDetail } from "./ResultDetail";
 export { default as ResultDetailMiniTest } from "./ResultDetailMiniTest";
+export { default as Profile } from "./Profile";
