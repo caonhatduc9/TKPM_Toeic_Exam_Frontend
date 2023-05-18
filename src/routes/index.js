@@ -11,6 +11,7 @@ import {
   ResultDetail,
   ResultDetailMiniTest,
   NotFound,
+  Profile
 } from "../pages";
 
 const publicRoutes = [
@@ -63,6 +64,10 @@ const publicRoutes = [
     path: "/minitest/:numpart/:titletest/result/detail",
     component: ResultDetailMiniTest,
   },
+  {
+    path: "/profile", 
+    component: Profile, 
+  }
 ];
 
 const privateRoutes = [];
