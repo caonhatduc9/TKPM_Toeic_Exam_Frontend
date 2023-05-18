@@ -7,7 +7,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: -1;
+  z-index: 1;
   padding: 7rem 0 0;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
 
@@ -30,5 +30,12 @@
   .nav_item {
     margin: 1rem 0rem;
     text-align: center;
+
+  }
+  
+  .nav_item:hover{
+    cursor: pointer;
+    background-color: blueviolet;
+    color: white;
   }
 }
