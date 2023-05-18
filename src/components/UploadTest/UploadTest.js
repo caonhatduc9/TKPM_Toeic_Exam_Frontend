@@ -67,21 +67,15 @@ const UploadTest = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        // Do something with the files here, such as upload them to a server
-
-        // Clear the form after submission
-        // setCsvFile(null);
-        // setMp3File(null);
-        // setImageFiles([]);
     };
 
 
     return (
-        <form className={style.upload_form} onSubmit={handleSubmit}>
+        <form className={style.upload_form} onSubmit={handleSubmit} >
             <div className={style.form_group}>
                 <div>
                     <p>Test</p>
-                    <input type="file" name="test" id="test" class={style.inputfile} accept=".csv,.xls,.xlsx,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleTestChange} />
+                    <input type="file"  name="test" id="test" class={style.inputfile} accept=".csv" onChange={handleTestChange} />
                     <label for="test">{labelFile}</label>
                 </div>
                 <div>
