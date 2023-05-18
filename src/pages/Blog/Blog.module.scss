@@ -1,0 +1,44 @@
+.app {
+    // width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .list_blog {
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+
+        .blog {
+            background-color: rgb(188, 185, 185);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            cursor: pointer;
+            div{
+                margin-left: 2rem;
+
+                .title{
+                    font-weight: bold;
+                    text-align: start;
+                }
+                .subtitle{
+                    font-weight: 10;
+                }
+            }
+
+            .image{
+                // object-fit: fill;
+                width:150px;
+                height: 100px;
+            }
+
+        }
+        .blog:hover {
+            .title{
+                color: blue;
+            }
+        }
+    }
+}

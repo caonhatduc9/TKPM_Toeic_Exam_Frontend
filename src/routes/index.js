@@ -8,12 +8,37 @@ import {
   Result,
   MiniTest,
   DoMiniTest,
+  SignIn,
+  SignUp,
+  Admin,
+  Blog,
+  DetailBlog,
 } from "../pages";
 
 const publicRoutes = [
   {
     path: "/",
     component: Home,
+  },
+  {
+    path:"/signin",
+    component: SignIn,
+  },
+  {
+    path:"/signup",
+    component: SignUp,
+  },
+  {
+    path:"/admin/:type",
+    component: Admin,
+  },
+  {
+    path:"/blog",
+    component: Blog,
+  },
+  {
+    path:"/blog/:idblog",
+    component: DetailBlog,
   },
   {
     path: "/about",

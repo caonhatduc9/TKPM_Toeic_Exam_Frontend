@@ -7,3 +7,5 @@ export { default as Question } from "./Question";
 export { default as QuestionGroup } from "./QuestionGroup";
 export { default as CountDownTimer } from "./CountDownTimer";
 export { default as ListPart } from "./ListPart";
+export { default as MyTable } from "./MyTable";
+export { default as UploadTest } from "./UploadTest";

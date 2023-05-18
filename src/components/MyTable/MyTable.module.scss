@@ -1,0 +1,21 @@
+
+th{
+  text-align: center;
+}
+td{
+  text-align: center;
+ div{
+  display: inline-block;
+  margin: 0 1rem;
+  padding: 0 0.5rem;
+  border-radius: 10px;
+ }
+ .edit{
+  border: 1px solid rgb(86, 197, 234);
+  background-color: rgb(86, 197, 234);
+ }
+ .delete{
+  border: 1px solid rgb(255, 62, 62);
+  background-color: rgb(255, 62, 62);
+ }
+}
