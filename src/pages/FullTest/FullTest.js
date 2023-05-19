@@ -1,8 +1,25 @@
+import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "../../components/Card/Card";
+import { useEffect, useState } from "react";
 const FullTest = () => {
+  const [fullTest, setFullTest] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://tinhoccaogiaphat.com/tests/full-test", {
+        headers: {
+          accept: "*/*",
+          "Content-Type": "*/*",
+        },
+      })
+      .then((response) => {
+        console.log(response.data.data);
+        setFullTest(response.data.data);
+      });
+  }, []);
   const listFullTest = [
     {
       title: "ETS TOEIC 2022 Test 1",
@@ -64,16 +81,15 @@ const FullTest = () => {
   return (
     <Container fluid="md">
       <Row>
-        {listFullTest &&
-          listFullTest.map((item, index) => {
+        {fullTest &&
+          fullTest.length > 0 &&
+          fullTest.map((item, index) => {
             return (
               <Col md={3} key={index}>
                 <Card
-                  title={item.title}
-                  des={item.des}
-                  time={item.time}
-                  countUser={item.countUser}
-                  numQues={item.numQues}
+                  title={item?.name}
+                  des={item?.description}
+                  id={item?.id}
                 />
               </Col>
             );

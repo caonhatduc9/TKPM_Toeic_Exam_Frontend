@@ -56,6 +56,7 @@ const publicRoutes = [
   {
     path: "/fulltest",
     component: FullTest,
+    layout: HeaderOnly,
   },
   {
     path: "/fulltest/:slug/start",
@@ -64,6 +65,10 @@ const publicRoutes = [
   {
     path: "/fulltest/:slug/result",
     component: Result,
+  },
+  {
+    path: "/fulltest/:slug/result/detail",
+    component: ResultDetail,
   },
   {
     path: "/minitest",
@@ -80,10 +85,6 @@ const publicRoutes = [
   {
     path: "/minitest/:numpart/:titletest/result",
     component: Result,
-  },
-  {
-    path: "/fulltest/:slug/result/detail",
-    component: ResultDetail,
   },
   {
     path: "/minitest/:numpart/:titletest/result/detail",

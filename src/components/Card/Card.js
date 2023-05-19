@@ -13,11 +13,12 @@ const Card = ({ ...props }) => {
     time = "120",
     countUser = "999",
     numQues = "200",
+    id = "1",
   } = props;
   const [link, setLink] = useState(title);
   const navigate = useNavigate();
   const handleClickCard = () => {
-    navigate(`/fulltest/${slugify(link)}/start`);
+    navigate(`/fulltest/${slugify(link)}/start?id=${id}`);
   };
   return (
     <div className={styles.wrapper}>

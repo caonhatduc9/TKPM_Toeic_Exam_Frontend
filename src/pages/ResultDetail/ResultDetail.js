@@ -15,6 +15,7 @@ import {
 } from "../../components";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 const ResultDetail = () => {
   const answersExPart1 = [
     {
@@ -745,6 +746,24 @@ const ResultDetail = () => {
       detail: `Theo ông Clifford, hãng hàng không tạm thời tăng điều gì?`,
     },
   ];
+  const [listParts, setListParts] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://tinhoccaogiaphat.com/tests/full-test/1`, {
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        setListParts(response?.data?.data?.parts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  console.log(listParts);
   const [listResult, setListResult] = useState(userResult);
   const [tabIndex, setTabIndex] = useState(0);
   const [isTimeup, setIsTimeup] = useState(true);

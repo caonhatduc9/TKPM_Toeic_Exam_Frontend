@@ -16,17 +16,18 @@ const ListPart = ({ ...props }) => {
   } = props;
   // const [isDone, setIsDone] = useState(true);
   // console.log(111, listRes);
-  const [listQues, setListQues] = useState();
+  // console.log(555, data);
+
   const isDone = useRef(false);
   const handleClickItem = () => {};
-  useEffect(() => {
-    let temp = [];
-    data &&
-      data.forEach((item) => {
-        temp = _.concat(temp, item?.answers);
-      });
-    setListQues(temp);
-  }, [data]);
+  // useEffect(() => {
+  //   let temp = [];
+  //   data &&
+  //     data.forEach((item) => {
+  //       temp = _.concat(temp, item?.answers);
+  //     });
+  //   setListQues(temp);
+  // }, [data]);
   // console.log(listQues);
 
   const handleColorQues = (value) => {
@@ -41,10 +42,10 @@ const ListPart = ({ ...props }) => {
   // console.log(listQues);
   const handleCheckResult = (number) => {
     const user = userResult.find((item) => {
-      return item.number === number;
+      return item.numQuestion === number;
     });
     const system = resultDetail.find((item) => {
-      return item.number === number;
+      return item.numQuestion === number;
     });
     if (
       user?.result === system?.result &&
@@ -56,10 +57,10 @@ const ListPart = ({ ...props }) => {
   };
   const handleCheckResultInCorrect = (number) => {
     const user = userResult.find((item) => {
-      return item.number === number;
+      return item.numQuestion === number;
     });
     const system = resultDetail.find((item) => {
-      return item.number === number;
+      return item.numQuestion === number;
     });
     if (user?.result === system?.result) {
       return false;
@@ -67,10 +68,10 @@ const ListPart = ({ ...props }) => {
   };
   const handleCheckResultSkip = (number) => {
     const user = userResult.find((item) => {
-      return item.number === number;
+      return item.numQuestion === number;
     });
     const system = resultDetail.find((item) => {
-      return item.number === number;
+      return item.numQuestion === number;
     });
     if ((user?.result && system?.result) === undefined) {
       return true;
@@ -80,39 +81,41 @@ const ListPart = ({ ...props }) => {
     <div className={styles.wrapper}>
       <h6>{title}</h6>
       <div className={styles.inner}>
-        {listQues &&
-          listQues.map((item) => {
+        {data &&
+          data.map((item, index) => {
             if (isShowResult && userResult && resultDetail) {
               return (
                 <span
-                  key={item?.number}
+                  key={index}
                   className={cx(
                     "list-part-item",
                     {
-                      isCorrect: handleCheckResult(item.number),
+                      isCorrect: handleCheckResult(item?.numQuestion),
                     },
                     {
-                      isInCorrect: handleCheckResultInCorrect(item.number),
+                      isInCorrect: handleCheckResultInCorrect(
+                        item?.numQuestion
+                      ),
                     },
                     {
-                      isSkip: handleCheckResultSkip(item.number),
+                      isSkip: handleCheckResultSkip(item?.numQuestion),
                     }
                   )}
                   onClick={handleClickItem}
                 >
-                  {item?.number}
+                  {item?.numQuestion}
                 </span>
               );
             } else {
               return (
                 <span
-                  key={item?.number}
+                  key={index}
                   className={cx("list-part-item", {
-                    done: handleColorQues(item.number),
+                    done: handleColorQues(item?.numQuestion),
                   })}
                   onClick={handleClickItem}
                 >
-                  {item?.number}
+                  {item?.numQuestion}
                 </span>
               );
             }

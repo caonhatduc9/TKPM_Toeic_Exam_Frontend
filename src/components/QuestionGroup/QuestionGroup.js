@@ -103,6 +103,7 @@ const QuestionGroup = ({ ...props }) => {
     },
   ];
   const {
+    part,
     isListening,
     isTwoCols,
     data = dataTemplatePart67,
@@ -115,55 +116,80 @@ const QuestionGroup = ({ ...props }) => {
     isShowResult,
     resultDetail,
   } = props;
-
+  // console.log(444, data);
   const handleClickNext = () => {
     onSelectTab(indexTab + 1);
   };
-  const dataHaveResultDetail = data.map((item) => {
-    const temp =
-      resultDetail && resultDetail.find((res) => res?.number === item?.number);
-    if (item.number === temp?.number) {
-      return {
-        ...item,
-        detail: temp?.detail,
-        result: temp?.result,
-        transcript: temp?.transcript,
-      };
-    } else return item;
-  });
 
+  // const dataHaveResultDetail =
+  //   data &&
+  //   data.length > 0 &&
+  //   data.map((item) => {
+  //     const temp =
+  //       resultDetail &&
+  //       resultDetail.find((res) => res?.number === item?.numQuestion);
+  //     if (item?.numQuestion === temp?.number) {
+  //       return {
+  //         ...item,
+  //         detail: temp?.detail,
+  //         result: temp?.result,
+  //         transcript: temp?.transcript,
+  //       };
+  //     } else return item;
+  //   });
+  // console.log(part);
   return (
     <div className={styles.wrapper}>
       {isTwoCols ? (
         <>
-          {dataHaveResultDetail &&
-            dataHaveResultDetail.map((item) => {
+          {data &&
+            data.length > 0 &&
+            data.map((item, index) => {
               return (
                 <div className={styles.inner} key={item.id}>
                   <div className={styles.twoCols}>
                     <div className={styles.left}>
                       <div className={styles.contextWrapper}>
                         <div className={styles.contextContent}>
-                          <div>{item.ques}</div>
+                          {part === "Part 6" ? (
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html:
+                                  (index + 4) % 4 === 0
+                                    ? item?.contentQuestion
+                                    : "",
+                              }}
+                            >
+                              {/* {item?.detail} */}
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                          {part === "Part 7" ? (
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: item?.contentQuestion,
+                              }}
+                            >
+                              {/* {item?.detail} */}
+                            </div>
+                          ) : (
+                            <></>
+                          )}
                         </div>
                       </div>
                     </div>
                     <div className={styles.right}>
                       <div className={styles.questionsWrapper}>
-                        {item.answers &&
-                          item.answers.map((answer, index) => {
-                            return (
-                              <Question
-                                number={answer.number}
-                                text={answer.text}
-                                answers={answer.answers}
-                                key={index}
-                                listRes={listResult}
-                                onSet={onSetListResult}
-                                isTimeup={isTimeup}
-                              />
-                            );
-                          })}
+                        <Question
+                          part={part}
+                          text={item?.content}
+                          answers={item?.optionAnswers}
+                          number={item?.numQuestion}
+                          listRes={listResult}
+                          onSet={onSetListResult}
+                          isTimeup={isTimeup}
+                        />
                       </div>
                       {isShowResult ? (
                         <div className={styles.detail}>
@@ -200,15 +226,20 @@ const QuestionGroup = ({ ...props }) => {
         </>
       ) : (
         <div className={styles.contentImageWrapper}>
-          {dataHaveResultDetail &&
-            dataHaveResultDetail.map((ques, index) => {
+          {data &&
+            data.length > 0 &&
+            data.map((ques, index) => {
               return (
                 <div key={index}>
                   <div className={styles.contextWrapper}>
                     <div className={styles.contextContent}>
-                      {!isFullTest && isListening ? <Audio /> : <></>}
-                      {ques.imageURL ? (
-                        <Image src={ques.imageURL} alt="image" />
+                      {!isFullTest && isListening && ques?.audioGroup ? (
+                        <Audio />
+                      ) : (
+                        <></>
+                      )}
+                      {ques?.assets?.[0]?.url ? (
+                        <Image src={ques?.assets?.[0]?.url} alt="image" />
                       ) : (
                         <></>
                       )}
@@ -216,8 +247,16 @@ const QuestionGroup = ({ ...props }) => {
                     <div className={styles.contextTranscript}>
                       {isShowResult && isListening ? (
                         <div className={styles.transcriptContent}>
-                          {ques?.transcript ? <p>Transcript:</p> : <></>}
-                          <div>{ques?.transcript}</div>
+                          {ques?.content ? <p>Transcript:</p> : <></>}
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                ques?.content ||
+                                `<p>Hi&#7879;n t&#7841;i ch&#432;a c&oacute; l&#7901;i gi&#7843;i chi ti&#7871;t cho c&acirc;u h&#7887;i n&agrave;y</p>`,
+                            }}
+                          >
+                            {/* {ques?.detail} */}
+                          </div>
                         </div>
                       ) : (
                         <></>
@@ -226,9 +265,14 @@ const QuestionGroup = ({ ...props }) => {
                   </div>
                   <div className={styles.questionsWrapper}>
                     <Question
-                      text={ques.answers[0].text}
-                      answers={ques.answers[0].answers}
-                      number={ques.id}
+                      part={part}
+                      text={
+                        part === "Part 1" || part === "Part 2"
+                          ? ""
+                          : ques?.content
+                      }
+                      answers={ques?.optionAnswers}
+                      number={ques?.numQuestion}
                       listRes={listResult}
                       onSet={onSetListResult}
                       isTimeup={isTimeup}

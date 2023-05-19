@@ -13,7 +13,7 @@ const CountDownTimer = ({ ...props }) => {
   //     timer.current += 1;
   //   }, 1000);
   // }, []);
-  const { milliseconds = 20000, onComplete } = props;
+  const { milliseconds = 2000000, onComplete } = props;
   let { timer } = props;
   // console.log(onComplete);
   const renderer = ({ hours, minutes, seconds, completed }) => {

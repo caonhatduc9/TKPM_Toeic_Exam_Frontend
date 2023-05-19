@@ -14,7 +14,8 @@ import {
   QuestionGroup,
 } from "../../components";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import axios from "axios";
 const DoFullTest = () => {
   const answersExPart1 = [
     {
@@ -598,10 +599,36 @@ const DoFullTest = () => {
       isTwoCols: true,
     },
   ];
+  const [listParts, setListParts] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const id = searchParams.get("id");
   const [listResult, setListResult] = useState([]);
   const [tabIndex, setTabIndex] = useState(0);
   const [isTimeup, setIsTimeup] = useState(false);
+  const [questionsPart3, setQuestionsPart3] = useState();
+  const [questionsPart4, setQuestionsPart4] = useState();
+  const [questionsPart6, setQuestionsPart6] = useState();
+  const [questionsPart7, setQuestionsPart7] = useState();
+  const timeStart = useRef();
+  const timeEnd = useRef();
   const timer = useRef(0);
+  useEffect(() => {
+    timeStart.current = new Date().toUTCString();
+    axios
+      .get(`http://tinhoccaogiaphat.com/tests/full-test/${id}`, {
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        setListParts(response?.data?.data?.parts);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const navigate = useNavigate();
   // useEffect(() => {
   //   console.log(111, listResult);
@@ -611,11 +638,37 @@ const DoFullTest = () => {
   };
   const { slug } = useParams();
   const title = slug?.split("-")?.join(" ")?.toUpperCase();
-  const handleClickSubmit = () => {
+  const handleClickSubmit = async () => {
     if (window.confirm("Bạn có chắc chắn muốn nộp bài?") === true) {
       // console.log("Done");
       navigate(`/fulltest/${slug}/result`);
     }
+    timeEnd.current = new Date().toUTCString();
+    const dataSubmit = {
+      type: "fulltest",
+      idTest: id,
+      userResult: [listResult],
+      timeStart: timeStart.current,
+      timeEnd: timeEnd.current,
+    };
+    console.log(dataSubmit);
+    await axios
+      .post(
+        "http://tinhoccaogiaphat.com/tests/full-test/result/1",
+        dataSubmit
+        // {
+        //   headers: {
+        //     accept: "*/*",
+        //     "Content-Type": "*/*",
+        //   },
+        // }
+      )
+      .then((res) => {
+        console.log("res", res.data);
+      })
+      .catch((err) => {
+        console.log("error in request", err);
+      });
   };
   const handleTimeup = useCallback(() => {
     setIsTimeup(true);
@@ -629,7 +682,57 @@ const DoFullTest = () => {
       navigate("/fulltest");
     }
   };
-
+  useEffect(() => {
+    if (listParts) {
+      let newPart3 = [];
+      let newPart4 = [];
+      let newPart6 = [];
+      let newPart7 = [];
+      listParts.map((item) => {
+        // console.log(item);
+        if (item?.name === "Part 3") {
+          const temp = item?.partParagraphs[0]?.paragraphs;
+          temp.forEach((element) => {
+            newPart3 = [...newPart3, ...element?.questions];
+          });
+        } else if (item?.name === "Part 4") {
+          const temp = item?.partParagraphs[0]?.paragraphs;
+          temp.forEach((element) => {
+            newPart4 = [...newPart4, ...element?.questions];
+          });
+        } else if (item?.name === "Part 6") {
+          const temp = item?.partParagraphs[0]?.paragraphs;
+          temp.forEach((element) => {
+            newPart6 = [...newPart6, ...element?.questions];
+          });
+          let i = 0;
+          newPart6.forEach((item, index) => {
+            if ((index + 4) % 4 === 0) {
+              item.contentQuestion = temp[i]?.content;
+              i++;
+            }
+          });
+        } else if (item?.name === "Part 7") {
+          const temp = item?.partParagraphs[0]?.paragraphs;
+          temp.forEach((element) => {
+            newPart7 = [...newPart7, ...element?.questions];
+          });
+          let i = 0;
+          temp.forEach((item, index) => {
+            newPart7[i].contentQuestion = item?.content;
+            // i++;
+            i += item?.questions.length;
+          });
+        }
+        return item;
+      });
+      setQuestionsPart3(newPart3);
+      setQuestionsPart4(newPart4);
+      setQuestionsPart6(newPart6);
+      setQuestionsPart7(newPart7);
+    }
+  }, [listParts]);
+  // console.log(listParts);
   return (
     <Container fluid>
       <div className={styles.heading}>
@@ -644,25 +747,43 @@ const DoFullTest = () => {
           <div className={styles.nav}>
             <Tabs selectedIndex={tabIndex} onSelect={(i) => handleSelectTab(i)}>
               <TabList>
-                {parts &&
-                  parts.length > 0 &&
-                  parts.map((item, index) => {
+                {listParts &&
+                  listParts.length > 0 &&
+                  listParts.map((item, index) => {
+                    // console.log(item?.parts?.name);
                     return (
                       <Tab key={item.id} className={styles.itemLink}>
-                        {item?.title}
+                        {item?.name}
                       </Tab>
                     );
                   })}
               </TabList>
-              {parts &&
-                parts.length > 0 &&
-                parts.map((item, index) => {
+              {listParts &&
+                listParts.length > 0 &&
+                listParts.map((item, index) => {
+                  // console.log(2222, item);
                   return (
                     <TabPanel key={item.id}>
                       <div className={styles.content}>
                         <QuestionGroup
-                          data={item?.questions}
-                          isTwoCols={item?.isTwoCols}
+                          part={item?.name}
+                          data={
+                            item?.name === "Part 3"
+                              ? questionsPart3
+                              : item?.name === "Part 4"
+                              ? questionsPart4
+                              : item?.name === "Part 6"
+                              ? questionsPart6
+                              : item?.name === "Part 7"
+                              ? questionsPart7
+                              : item?.partQuestions[0]?.questions ||
+                                item?.partParagraphs[0]?.paragraphs
+                          }
+                          isTwoCols={
+                            item?.name === "Part 6" || item?.name === "Part 7"
+                              ? true
+                              : false
+                          }
                           listResult={listResult}
                           onSetListResult={setListResult}
                           isFullTest={true}
@@ -691,13 +812,24 @@ const DoFullTest = () => {
                 {" "}
                 NỘP BÀI
               </Button>
-              {parts &&
-                parts.map((item, index) => {
+              {listParts &&
+                listParts.map((item, index) => {
                   return (
                     <ListPart
-                      data={item?.questions}
+                      data={
+                        item?.name === "Part 3"
+                          ? questionsPart3
+                          : item?.name === "Part 4"
+                          ? questionsPart4
+                          : item?.name === "Part 6"
+                          ? questionsPart6
+                          : item?.name === "Part 7"
+                          ? questionsPart7
+                          : item?.partQuestions[0]?.questions ||
+                            item?.partParagraphs[0]?.paragraphs
+                      }
                       key={index}
-                      title={item?.title}
+                      title={item?.name}
                       listRes={listResult}
                     />
                   );
