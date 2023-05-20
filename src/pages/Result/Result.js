@@ -3,13 +3,20 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "../../components/Card/Card";
 import styles from "./Result.module.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  Link,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "react-bootstrap";
 import { faBan, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faFlag } from "@fortawesome/free-regular-svg-icons";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const Result = () => {
-  const { slug, numpart, titletest } = useParams();
+  const { slug, numpart, titletest, id } = useParams();
   let titleTest;
   if (numpart && titletest) {
     titleTest =
@@ -18,25 +25,32 @@ const Result = () => {
   }
   const str = slug?.split("-")?.join(" ")?.toUpperCase();
   const title = str || titleTest || "ETS TOEIC 2022 Test 1";
-  const result = {
-    mark: 720,
-    res: "2 / 200",
-    accuracy: 30,
-    timer: "0:48:20",
-    correct: 120,
-    incorrect: 80,
-    skip: 0,
-  };
-  const params = useParams();
+
   const navigate = useNavigate();
 
   const handleClickDetail = () => {
     if (numpart && titletest) {
       navigate(`/minitest/${numpart}/${titletest}/result/detail`);
     } else {
-      navigate(`/fulltest/${slug}/result/detail`);
+      navigate(`/fulltest/${slug}/result/detail/${id}`);
     }
   };
+  const [result, setResult] = useState();
+  useEffect(() => {
+    axios
+      .get(`http://tinhoccaogiaphat.com/tests/full-test/result/${id}`, {
+        headers: {
+          accept: "*/*",
+          "Content-Type": "*/*",
+        },
+      })
+      .then((response) => {
+        setResult(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <Container fluid="lg">
@@ -53,15 +67,18 @@ const Result = () => {
             <div className={styles.statusBox}>
               <div className={styles.statusRes}>
                 <span>Kết quả làm bài</span>
-                <span>{result?.res}</span>
+                <span>
+                  {result?.totalCorrect} /{" "}
+                  {result?.totalCorrect + result?.totalIncorrect}
+                </span>
               </div>
               <div className={styles.statusPercent}>
                 <span>Độ chính xác (#đúng/#tổng)</span>
-                <span>{result?.accuracy}%</span>
+                <span>{result?.percentageCorrect}%</span>
               </div>
               <div className={styles.statusTimer}>
                 <span>Thời gian hoàn thành</span>
-                <span>{result?.timer}</span>
+                <span>{result?.timeDoing}</span>
               </div>
             </div>
             <div className={styles.rightContainer}>
@@ -71,7 +88,7 @@ const Result = () => {
                     <FontAwesomeIcon icon={faFlag} />
                   </div>
                   <div>Điểm</div>
-                  <div>{result?.mark}</div>
+                  <div>{result?.totalScore}</div>
                 </div>
               </div>
               <div className={styles.scoreBox}>
@@ -80,7 +97,7 @@ const Result = () => {
                     <FontAwesomeIcon icon={faCheck} />
                   </div>
                   <div>Trả lời đúng</div>
-                  <div>{result?.correct}</div>
+                  <div>{result?.totalCorrect}</div>
                   <div>câu hỏi</div>
                 </div>
                 <div className={styles.incorrect}>
@@ -88,7 +105,7 @@ const Result = () => {
                     <FontAwesomeIcon icon={faXmark} />
                   </div>
                   <div>Trả lời sai</div>
-                  <div>{result?.incorrect}</div>
+                  <div>{result?.totalIncorrect}</div>
                   <div>câu hỏi</div>
                 </div>
                 <div className={styles.skip}>
@@ -96,7 +113,7 @@ const Result = () => {
                     <FontAwesomeIcon icon={faBan} />
                   </div>
                   <div>Bỏ qua</div>
-                  <div>{result?.skip}</div>
+                  <div>{result?.totalSkipped}</div>
                   <div>câu hỏi</div>
                 </div>
               </div>

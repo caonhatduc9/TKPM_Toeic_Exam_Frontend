@@ -18,7 +18,7 @@ import {
   ResultDetail,
   ResultDetailMiniTest,
   NotFound,
-  Profile
+  Profile,
 } from "../pages";
 
 const publicRoutes = [
@@ -31,24 +31,24 @@ const publicRoutes = [
     component: Home,
   },
   {
-    path:"/signin",
+    path: "/signin",
     component: SignIn,
   },
   {
-    path:"/signup",
+    path: "/signup",
     component: SignUp,
   },
   {
-    path:"/admin/:type",
+    path: "/admin/:type",
     component: Admin,
     layout:NoLayout,
   },
   {
-    path:"/blog",
+    path: "/blog",
     component: Blog,
   },
   {
-    path:"/blog/:idblog",
+    path: "/blog/:idblog",
     component: DetailBlog,
   },
   {
@@ -66,11 +66,11 @@ const publicRoutes = [
     component: DoFullTest,
   },
   {
-    path: "/fulltest/:slug/result",
+    path: "/fulltest/:slug/result/:id",
     component: Result,
   },
   {
-    path: "/fulltest/:slug/result/detail",
+    path: "/fulltest/:slug/result/detail/:id",
     component: ResultDetail,
   },
   {
@@ -94,9 +94,9 @@ const publicRoutes = [
     component: ResultDetailMiniTest,
   },
   {
-    path: "/profile", 
-    component: Profile, 
-  }
+    path: "/profile",
+    component: Profile,
+  },
 ];
 
 const privateRoutes = [];

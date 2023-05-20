@@ -16,8 +16,10 @@ const FullTest = () => {
         },
       })
       .then((response) => {
-        console.log(response.data.data);
         setFullTest(response.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
   const listFullTest = [
@@ -79,7 +81,7 @@ const FullTest = () => {
     },
   ];
   return (
-    <Container fluid="md">
+    <Container fluid="md" style={{ marginTop: "20px" }}>
       <Row>
         {fullTest &&
           fullTest.length > 0 &&

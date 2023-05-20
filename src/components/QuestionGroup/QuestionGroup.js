@@ -121,30 +121,30 @@ const QuestionGroup = ({ ...props }) => {
     onSelectTab(indexTab + 1);
   };
 
-  // const dataHaveResultDetail =
-  //   data &&
-  //   data.length > 0 &&
-  //   data.map((item) => {
-  //     const temp =
-  //       resultDetail &&
-  //       resultDetail.find((res) => res?.number === item?.numQuestion);
-  //     if (item?.numQuestion === temp?.number) {
-  //       return {
-  //         ...item,
-  //         detail: temp?.detail,
-  //         result: temp?.result,
-  //         transcript: temp?.transcript,
-  //       };
-  //     } else return item;
-  //   });
-  // console.log(part);
+  const dataHaveResultDetail =
+    data &&
+    data.length > 0 &&
+    data.map((item) => {
+      const temp =
+        resultDetail &&
+        resultDetail.find((res) => res?.number === item?.numQuestion);
+      if (item?.numQuestion === temp?.number) {
+        return {
+          ...item,
+          detail: temp?.detail,
+          result: temp?.result,
+          transcript: temp?.transcript,
+        };
+      } else return item;
+    });
+  // console.log(999, dataHaveResultDetail);
   return (
     <div className={styles.wrapper}>
       {isTwoCols ? (
         <>
-          {data &&
-            data.length > 0 &&
-            data.map((item, index) => {
+          {dataHaveResultDetail &&
+            dataHaveResultDetail.length > 0 &&
+            dataHaveResultDetail.map((item, index) => {
               return (
                 <div className={styles.inner} key={item.id}>
                   <div className={styles.twoCols}>
@@ -226,9 +226,9 @@ const QuestionGroup = ({ ...props }) => {
         </>
       ) : (
         <div className={styles.contentImageWrapper}>
-          {data &&
-            data.length > 0 &&
-            data.map((ques, index) => {
+          {dataHaveResultDetail &&
+            dataHaveResultDetail.length > 0 &&
+            dataHaveResultDetail.map((ques, index) => {
               return (
                 <div key={index}>
                   <div className={styles.contextWrapper}>
@@ -239,7 +239,11 @@ const QuestionGroup = ({ ...props }) => {
                         <></>
                       )}
                       {ques?.assets?.[0]?.url ? (
-                        <Image src={ques?.assets?.[0]?.url} alt="image" />
+                        <Image
+                          src={ques?.assets?.[0]?.url}
+                          alt="image"
+                          className={styles.imageQuestion}
+                        />
                       ) : (
                         <></>
                       )}
@@ -247,12 +251,12 @@ const QuestionGroup = ({ ...props }) => {
                     <div className={styles.contextTranscript}>
                       {isShowResult && isListening ? (
                         <div className={styles.transcriptContent}>
-                          {ques?.content ? <p>Transcript:</p> : <></>}
+                          {ques?.transcript ? <p>Transcript:</p> : <></>}
                           <div
                             dangerouslySetInnerHTML={{
                               __html:
-                                ques?.content ||
-                                `<p>Hi&#7879;n t&#7841;i ch&#432;a c&oacute; l&#7901;i gi&#7843;i chi ti&#7871;t cho c&acirc;u h&#7887;i n&agrave;y</p>`,
+                                ques?.transcript ||
+                                `<i><p>Hi&#7879;n t&#7841;i ch&#432;a c&oacute; transcript</p></i>`,
                             }}
                           >
                             {/* {ques?.detail} */}

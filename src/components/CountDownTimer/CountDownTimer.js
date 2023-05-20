@@ -5,14 +5,6 @@ const TimeUp = () => {
   return <div className={styles.timeup}>00:00</div>;
 };
 const CountDownTimer = ({ ...props }) => {
-  // // clearInterval(timer.current);
-  // useEffect(() => {
-  //   // clearInterval(timer.current);
-  //   setInterval(() => {
-  //     console.log("check");
-  //     timer.current += 1;
-  //   }, 1000);
-  // }, []);
   const { milliseconds = 2000000, onComplete } = props;
   let { timer } = props;
   // console.log(onComplete);

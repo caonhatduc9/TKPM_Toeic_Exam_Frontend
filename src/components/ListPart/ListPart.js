@@ -6,32 +6,12 @@ import _ from "lodash";
 const cx = classNames.bind(styles);
 
 const ListPart = ({ ...props }) => {
-  const {
-    title = "Part 1",
-    data,
-    listRes,
-    isShowResult,
-    userResult,
-    resultDetail,
-  } = props;
-  // const [isDone, setIsDone] = useState(true);
-  // console.log(111, listRes);
-  // console.log(555, data);
+  const { title = "Part 1", data, listRes, isShowResult, resultDetail } = props;
 
   const isDone = useRef(false);
   const handleClickItem = () => {};
-  // useEffect(() => {
-  //   let temp = [];
-  //   data &&
-  //     data.forEach((item) => {
-  //       temp = _.concat(temp, item?.answers);
-  //     });
-  //   setListQues(temp);
-  // }, [data]);
-  // console.log(listQues);
 
   const handleColorQues = (value) => {
-    const check = false;
     const temp = listRes.find((item) => {
       return item.number === value;
     });
@@ -41,39 +21,48 @@ const ListPart = ({ ...props }) => {
   };
   // console.log(listQues);
   const handleCheckResult = (number) => {
-    const user = userResult.find((item) => {
-      return item.numQuestion === number;
+    const user = listRes.find((item) => {
+      return item.number === number;
     });
     const system = resultDetail.find((item) => {
-      return item.numQuestion === number;
+      return item.number === number;
     });
     if (
       user?.result === system?.result &&
-      user?.result &&
-      system?.result !== undefined
+      user?.result !== undefined &&
+      system?.result !== undefined &&
+      user?.result !== null &&
+      system?.result !== null
     ) {
       return true;
     } else return false;
   };
   const handleCheckResultInCorrect = (number) => {
-    const user = userResult.find((item) => {
-      return item.numQuestion === number;
+    const user = listRes.find((item) => {
+      return item.number === number;
     });
     const system = resultDetail.find((item) => {
-      return item.numQuestion === number;
+      return item.number === number;
     });
-    if (user?.result === system?.result) {
+    if (
+      user?.result === system?.result &&
+      user?.result !== null &&
+      system?.result !== null
+    ) {
       return false;
     } else return true;
   };
   const handleCheckResultSkip = (number) => {
-    const user = userResult.find((item) => {
-      return item.numQuestion === number;
+    const user = listRes.find((item) => {
+      return item.number === number;
     });
     const system = resultDetail.find((item) => {
-      return item.numQuestion === number;
+      return item.number === number;
     });
-    if ((user?.result && system?.result) === undefined) {
+    if (
+      (user?.result && system?.result) === undefined ||
+      (user?.result && system?.result) === null
+    ) {
       return true;
     } else return false;
   };
@@ -83,7 +72,7 @@ const ListPart = ({ ...props }) => {
       <div className={styles.inner}>
         {data &&
           data.map((item, index) => {
-            if (isShowResult && userResult && resultDetail) {
+            if (isShowResult && listRes && resultDetail) {
               return (
                 <span
                   key={index}
