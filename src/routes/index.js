@@ -1,6 +1,8 @@
 import About from "../pages/About";
 import Home from "../pages/Home";
 import HeaderOnly from "../layouts/HeaderOnly";
+import NoLayout from "../layouts/NoLayout";
+
 import {
   ChooseMiniTest,
   DoFullTest,
@@ -39,6 +41,7 @@ const publicRoutes = [
   {
     path:"/admin/:type",
     component: Admin,
+    layout:NoLayout,
   },
   {
     path:"/blog",

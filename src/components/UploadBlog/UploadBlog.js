@@ -1,6 +1,10 @@
+import React, { useState } from "react";
 
-const uploadblog = ()=>{
+const UploadBlog = () => {
+    const [title, setTitle] = useState(null);
     
+
+    return;
 }
 
-export default uploadblog;
+export default UploadBlog;

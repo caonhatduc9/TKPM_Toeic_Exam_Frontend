@@ -14,7 +14,7 @@ const Header = () => {
       <div className="nav-left">
         <a className={styles.button} href="http://localhost:3000/fulltest">Đề thi Online</a>
         <a className={styles.button} href="#">Luyện tập kỹ năng</a>
-        <a className={styles.button} href="#">Bài Blog</a>
+        <a className={styles.button} href="http://localhost:3000/blog">Bài Blog</a>
         <a className={styles.button} href="#">Ghi chú</a>
         <a href="http://localhost:3000/profile">
           <img src={"https://cdn.popsww.com/blog/sites/2/2021/03/nobita-la-ai.jpg"} alt="pictureProfile" className={styles.imgProfile} style={myStyle} />

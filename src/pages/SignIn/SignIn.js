@@ -51,10 +51,7 @@ const SignIn = () => {
             } else {
 
                 //do something
-
-
-
-
+                window.localStorage.setItem('user',emailValue);
                 navigate('/');
             }
         } else {

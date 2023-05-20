@@ -9,3 +9,5 @@ export { default as CountDownTimer } from "./CountDownTimer";
 export { default as ListPart } from "./ListPart";
 export { default as MyTable } from "./MyTable";
 export { default as UploadTest } from "./UploadTest";
+export { default as UploadBlog } from "./UploadBlog";
+

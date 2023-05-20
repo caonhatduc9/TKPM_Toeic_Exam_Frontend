@@ -1,42 +1,66 @@
 .app {
     // width: 80%;
     display: flex;
-    align-items: center;
-    flex-direction: column;
+    // align-items: center;
+    // flex-direction: column;
+    // justify-content: space-around;
+
+    .categories {
+        width: 20%;
+        margin: 0 10%;
+
+        .category {
+            font-size: 3rem;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        >p {
+            font-weight: bold;
+        }
+
+        li {
+            list-style: none;
+        }
+    }
+
 
     .list_blog {
-        display: flex;
-        flex-direction: column;
         width: 40%;
-
+        margin-top: 2rem;
+       
         .blog {
-            background-color: rgb(188, 185, 185);
             border-radius: 10px;
-            padding: 2rem;
             margin-bottom: 3rem;
             display: flex;
             cursor: pointer;
-            div{
+
+            div {
                 margin-left: 2rem;
 
-                .title{
+                .title {
                     font-weight: bold;
                     text-align: start;
                 }
-                .subtitle{
+
+                .subtitle {
                     font-weight: 10;
                 }
             }
 
-            .image{
+            .image {
                 // object-fit: fill;
-                width:150px;
+                width: 150px;
                 height: 100px;
             }
 
         }
+
         .blog:hover {
-            .title{
+            .title {
                 color: blue;
             }
         }

@@ -1,6 +1,7 @@
 import { Nav } from 'react-bootstrap';
 import style from './SideBar.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
+import images from '../../assets/images';
 const SideBar = () => {
     const { type } = useParams();
     const navitem = [
@@ -13,26 +14,20 @@ const SideBar = () => {
     const navigate = useNavigate();
 
     return (
-        <Nav className={style.sidebar}>
-            {navitem.map((item) => {
-                if (type == item.handle)
-                    return <Nav.Item className={style.a}><p>{item.content}</p></Nav.Item>;
-                else return <Nav.Item className={style.nav_item} onClick={() => { navigate('/admin/' + item.handle) }}><p>{item.content}</p></Nav.Item>;
-                
+        <>
+            <Nav className={style.sidebar}>
+                <Nav.Link  className={style.logo} onClick={() => { navigate('/') }}>
+                    <img src={images.logo}></img>
+                </Nav.Link>
+                {navitem.map((item) => {
+                    if (type == item.handle)
+                        return <Nav.Item className={style.a}><p>{item.content}</p></Nav.Item>;
+                    else
+                        return <Nav.Item className={style.nav_item} onClick={() => { navigate('/admin/' + item.handle); }}><p>{item.content}</p></Nav.Item>;
 
-            })
-            }
 
-            {/* <Nav.Item className={`${style.nav_item} ${type === "" && style.a}`} >
-                <p >Dashboard Test</p>
-            </Nav.Item>
-            <Nav.Item className={style.nav_item}>
-                <p >Dashboard User</p>
-            </Nav.Item>
-            <Nav.Item className={style.a}>
-                <p >Upload Test</p>
-            </Nav.Item> */}
-        </Nav>
+                })}
+            </Nav></>
     );
 }
 
