@@ -78,45 +78,45 @@ const UploadTest = () => {
             <div className={style.form_group}>
                 <div>
                     <p>Test</p>
-                    <input type="file"  name="test" id="test" class={style.inputfile} accept=".csv" onChange={handleTestChange} />
+                    <input type="file"  name="test" id="test" className={style.inputfile} accept=".csv" onChange={handleTestChange} />
                     <label for="test">{labelFile}</label>
                 </div>
                 <div>
 
                     <p>Audio</p>
-                    <input type="file" name="audio" id="audio" class={style.inputfile} accept="audio/*" onChange={handleAudioChange} />
+                    <input type="file" name="audio" id="audio" className={style.inputfile} accept="audio/*" onChange={handleAudioChange} />
                     <label for="audio">{labelAudioFile}</label>
                 </div>
             </div>
             <div className={style.form_group}>
                 <div>
                     <p>Question 1</p>
-                    <input type="file" name="image1" id="image1" class={style.inputfile} accept="image/*" onChange={handleImage1Change} />
+                    <input type="file" name="image1" id="image1" className={style.inputfile} accept="image/*" onChange={handleImage1Change} />
                     <label for="image1">{labelImage1}</label>
                 </div>
                 <div>
                     <p>Question 2</p>
-                    <input type="file" name="image2" id="image2" class={style.inputfile} accept="image/*" onChange={handleImage2Change} />
+                    <input type="file" name="image2" id="image2" className={style.inputfile} accept="image/*" onChange={handleImage2Change} />
                     <label for="image2">{labelImage2}</label>
                 </div>
                 <div>
                     <p>Question 3</p>
-                    <input type="file" name="image3" id="image3" class={style.inputfile} accept="image/*" onChange={handleImage3Change} />
+                    <input type="file" name="image3" id="image3" className={style.inputfile} accept="image/*" onChange={handleImage3Change} />
                     <label for="image3">{labelImage3}</label>
                 </div>
                 <div>
                     <p>Question 4</p>
-                    <input type="file" name="image4" id="image4" class={style.inputfile} accept="image/*" onChange={handleImage4Change} />
+                    <input type="file" name="image4" id="image4" className={style.inputfile} accept="image/*" onChange={handleImage4Change} />
                     <label for="image4">{labelImage4}</label>
                 </div>
                 <div>
                     <p>Question 5</p>
-                    <input type="file" name="image5" id="image5" class={style.inputfile} accept="image/*" onChange={handleImage5Change} />
+                    <input type="file" name="image5" id="image5" className={style.inputfile} accept="image/*" onChange={handleImage5Change} />
                     <label for="image5">{labelImage5}</label>
                 </div>
                 <div>
                     <p> Question 6</p>
-                    <input type="file" name="image6" id="image6" class={style.inputfile} accept="image/*" onChange={handleImage6Change} />
+                    <input type="file" name="image6" id="image6" className={style.inputfile} accept="image/*" onChange={handleImage6Change} />
                     <label for="image6">{labelImage6}</label>
                 </div>
             </div>
