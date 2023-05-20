@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import slugify from "react-slugify";
 import { Col, Container, Row } from "react-bootstrap";
 import images from "../../assets/images";
 import styles from "./ChooseMiniTest.module.scss";
+import axios from "axios";
 
 const ChooseMiniTest = () => {
   const listMiniTestPart1 = [
@@ -263,25 +264,39 @@ const ChooseMiniTest = () => {
     listMiniTestPartN = listMiniTestPart7;
   }
   const navigate = useNavigate();
-  const handleClickChooseMiniTest = (title) => {
-    const slugChooseMiniTest = slugify(title.slice(title.search("M")));
-    navigate(`/minitest/part${numPart}/${slugChooseMiniTest}/start`);
+  const handleClickChooseMiniTest = (title, id) => {
+    const slugChooseMiniTest = slugify(title);
+    navigate(`/minitest/part${numPart}/${slugChooseMiniTest}/start?id=${id}`);
   };
+
+  const [miniTest, setMiniTest] = useState([]);
+  useEffect(() => {
+    axios
+      .get(`http://tinhoccaogiaphat.com/tests/skill-test/${numpart}`)
+      .then((response) => {
+        console.log(response.data.data);
+        setMiniTest(response.data.data);
+      });
+  }, []);
+  console.log(miniTest);
+
   return (
     <Container>
       <div className={styles.wrapper}>
         <h2>Mini Test - Part {numPart}</h2>
         <div className={styles.content}>
           <ul className={styles.list}>
-            {listMiniTestPartN &&
-              listMiniTestPartN.length > 0 &&
-              listMiniTestPartN.map((item) => {
+            {miniTest &&
+              miniTest.length > 0 &&
+              miniTest.map((item) => {
                 return (
                   <li
-                    key={item.id}
-                    onClick={() => handleClickChooseMiniTest(item.title)}
+                    key={item?.id}
+                    onClick={() =>
+                      handleClickChooseMiniTest(item?.name, item?.id)
+                    }
                   >
-                    {item.title}
+                    {item?.name}
                   </li>
                 );
               })}

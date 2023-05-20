@@ -33,6 +33,7 @@ const Question = ({ ...props }) => {
     },
   ];
   const {
+    part,
     number = "32",
     text = "What is the woman preparing for?",
     isFourAns,
@@ -77,6 +78,7 @@ const Question = ({ ...props }) => {
     }
   };
 
+  // console.log(answers);
   return (
     <div className={styles.wrapper}>
       <div className={styles.number}>
@@ -99,7 +101,12 @@ const Question = ({ ...props }) => {
                     disabled={isTimeup}
                   />
                   <label htmlFor={answer?.id}>
-                    {answer?.value}. {answer?.title}
+                    {answer?.value}.
+                    <span>
+                      {part === "Part 1" || part === "Part 2"
+                        ? ""
+                        : answer?.title || answer?.content}
+                    </span>
                   </label>
                 </div>
               );

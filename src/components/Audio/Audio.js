@@ -61,7 +61,7 @@ const Audio = ({ ...props }) => {
           setProgress(percent);
         }
       }
-    }, [1000]);
+    }, 1000);
   };
 
   useEffect(() => {
