@@ -1,24 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import style from "./SignIn.module.scss";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { parseInt } from "lodash";
+
 const SignIn = () => {
     const [errorMessagesEmail, setErrorMessagesEmail] = useState("");
     const [errorMessagesPassword, setErrorMessagesPassword] = useState("");
-
+    const [userResponse, setUserResponse] = useState();
     const navigate = useNavigate();
-
-    // User Login info
-    const database = [
-        {
-            email: "user1@gmail.com",
-            password: "pass12345"
-        },
-        {
-            email: "user2@gmail,com",
-            password: "pass23456"
-        }
-    ];
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -43,20 +33,25 @@ const SignIn = () => {
             setErrorMessagesPassword("Invalid password");
         }
 
-        const userData = database.find((user) => user.email === emailValue);
+        axios.post("http://tinhoccaogiaphat.com/auth/login", { email: emailValue, password: passwordValue })
+            .then((res) => {
+                console.log(res.data);
 
-        if (userData) {
-            if (userData.password !== passwordValue) {
-                setErrorMessagesPassword("Password isn't correct" );
-            } else {
+                if (res.data.status === "success") {
+                    window.localStorage.setItem('sigin', JSON.stringify(res.data));
+                    navigate("/");
 
-                //do something
-                window.localStorage.setItem('user',emailValue);
-                navigate('/');
-            }
-        } else {
-            setErrorMessagesEmail("Email isn't exist");
-        }
+                } else {
+                    setErrorMessagesPassword("Password isn't correct");
+                    setErrorMessagesEmail("Email isn't exist");
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+
+
+
     };
     const isEmail = (email) => {
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
@@ -67,7 +62,7 @@ const SignIn = () => {
 
         return regex.test(password);
     };
-    
+
     const renderErrorMessage = (name) => {
         if (name === "email") {
 
@@ -97,10 +92,10 @@ const SignIn = () => {
                             <input type="password" name="password" />
                         </div>
                         <div className={style.forgotpass_signup}>
-                            <p onClick={()=>{navigate('/forgotpassword')}} >Forgot Password?</p>
+                            <p onClick={() => { navigate('/forgotpassword') }} >Forgot Password?</p>
                             <div>
                                 <p>Haven't Account</p>
-                                <p className={style.signup} onClick={()=>{navigate('/signup')}} >Sign Up</p>
+                                <p className={style.signup} onClick={() => { navigate('/signup') }} >Sign Up</p>
                             </div>
                         </div>
                         <div className={style.button_container}>
