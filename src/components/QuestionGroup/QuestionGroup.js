@@ -138,20 +138,26 @@ const QuestionGroup = ({ ...props }) => {
                   <div className={styles.contextWrapper}>
                     <div className={styles.contextContent}>
                       {!isFullTest && ques?.isListening ? (
-                        <Audio
-                          source={
-                            ques?.assets?.[0]?.url &&
-                            ques?.assets?.[0]?.type === "AUDIO"
-                              ? ques?.assets?.[0]?.url
-                              : ques?.assets?.[1]?.url &&
-                                ques?.assets?.[1]?.type === "AUDIO"
-                              ? ques?.assets?.[1]?.url
-                              : ques?.assets?.url &&
-                                ques?.assets?.type === "AUDIO"
-                              ? ques?.assets?.url
-                              : ""
-                          }
-                        />
+                        ques?.assets?.[0]?.url ||
+                        ques?.assets?.[1]?.url ||
+                        ques?.assets?.url ? (
+                          <Audio
+                            source={
+                              ques?.assets?.[0]?.url &&
+                              ques?.assets?.[0]?.type === "AUDIO"
+                                ? ques?.assets?.[0]?.url
+                                : ques?.assets?.[1]?.url &&
+                                  ques?.assets?.[1]?.type === "AUDIO"
+                                ? ques?.assets?.[1]?.url
+                                : ques?.assets?.url &&
+                                  ques?.assets?.type === "AUDIO"
+                                ? ques?.assets?.url
+                                : ""
+                            }
+                          />
+                        ) : (
+                          <Audio />
+                        )
                       ) : (
                         <></>
                       )}

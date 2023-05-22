@@ -102,7 +102,6 @@ const DoFullTest = () => {
   };
 
   const handleDataQuestionGroup = (data) => {
-    console.log(data);
     if (data) {
       if (
         data.name === "Part 1" ||
@@ -124,7 +123,6 @@ const DoFullTest = () => {
       }
     }
   };
-  console.log(999, listParts[0]?.partQuestions[0]?.questions[0]?.assets);
   return (
     <Container fluid>
       <div className={styles.heading}>

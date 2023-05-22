@@ -119,7 +119,11 @@ const ResultDetail = () => {
       </div>
       <div className={styles.testWrapper}>
         <div className={styles.testContent}>
-          <Audio />
+          <Audio
+            source={
+              listParts[0]?.partQuestions[0]?.questions[0]?.assets[1]?.url
+            }
+          />
           <div className={styles.nav}>
             <Tabs selectedIndex={tabIndex} onSelect={(i) => handleSelectTab(i)}>
               <TabList>
@@ -128,7 +132,10 @@ const ResultDetail = () => {
                   listParts.map((item, index) => {
                     // console.log(item?.parts?.name);
                     return (
-                      <Tab key={item.id} className={styles.itemLink}>
+                      <Tab
+                        key={`${item.id}+ ${index}`}
+                        className={styles.itemLink}
+                      >
                         {item?.name}
                       </Tab>
                     );
@@ -139,7 +146,7 @@ const ResultDetail = () => {
                 listParts.map((item, index) => {
                   // console.log(2222, item);
                   return (
-                    <TabPanel key={item.id}>
+                    <TabPanel key={`${item.id}+ ${index}`}>
                       <div className={styles.content}>
                         <QuestionGroup
                           part={item?.name}
@@ -174,7 +181,7 @@ const ResultDetail = () => {
                   return (
                     <ListPart
                       data={handleDataQuestionGroup(item)}
-                      key={index}
+                      key={`${item.id}+ ${index}`}
                       title={item?.name}
                       listRes={listResult}
                       isShowResult={true}

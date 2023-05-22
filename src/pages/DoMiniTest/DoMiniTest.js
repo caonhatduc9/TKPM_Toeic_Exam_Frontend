@@ -44,7 +44,7 @@ const DoMiniTest = () => {
       )
       .then((response) => {
         const res = response?.data?.data[0];
-        console.log(response?.data?.data[0]);
+        // console.log(response?.data?.data[0]);
         if (
           res?.parts[0]?.name === "Part 1" ||
           res?.parts[0]?.name === "Part 2" ||
@@ -88,7 +88,6 @@ const DoMiniTest = () => {
           // }
         )
         .then((res) => {
-          console.log("res", res.data);
           if (res.data.statusCode !== 500) {
             navigate(
               `/minitest/${numpart}/${titletest}/result/${idPart}?id=${id}`
@@ -149,7 +148,6 @@ const DoMiniTest = () => {
             }
             listQues.push(...temp);
           });
-        console.log(tempQuestionGroup, listQues);
         return listQues;
       }
     }

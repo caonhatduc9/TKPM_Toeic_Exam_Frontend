@@ -24,7 +24,7 @@ const FullTest = () => {
   }, []);
 
   return (
-    <Container fluid="md" style={{ marginTop: "20px" }}>
+    <Container fluid="md" style={{ marginTop: "100px" }}>
       <h2 className="title-list-test">List FullTest</h2>
       <Row>
         {fullTest &&

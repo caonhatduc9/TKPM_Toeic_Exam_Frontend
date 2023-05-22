@@ -38,7 +38,7 @@ const ResultDetailMiniTest = () => {
 
   const handleDataQuestionGroup = (data) => {
     if (data) {
-      console.log(data);
+      // console.log(data);
       if (data[0]?.name === "Part 1" || data[0]?.name === "Part 2") {
         handleIsListening(data[0]?.partQuestions[0]?.questions);
       }
@@ -56,6 +56,7 @@ const ResultDetailMiniTest = () => {
             let temp = [];
             temp = [...temp, ...item.questions];
             temp[0].contentQuestion = item.content;
+            temp[0].assets = item.assets;
             if (data[0]?.name === "Part 3" || data[0]?.name === "Part 4") {
               temp[0].isListening = true;
             }
@@ -96,7 +97,7 @@ const ResultDetailMiniTest = () => {
           }
         )
         .then((response) => {
-          console.log(response.data.data);
+          // console.log(response.data.data);
           const userRes = response.data.data?.studentAnswer;
           const resDetail = response.data.data?.answer;
           setListResult(userRes);
@@ -107,7 +108,6 @@ const ResultDetailMiniTest = () => {
         });
     }
   }, []);
-  console.log(222, listPart);
 
   return (
     <Container fluid>
