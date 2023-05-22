@@ -1,7 +1,12 @@
+
 import style from "./Profile.module.scss"
 
 
+
 function Profile() {
+
+    const data = JSON.parse(window.localStorage.getItem("signin")).data; 
+    console.log("data: ", data);
 
 
     return (
@@ -44,8 +49,8 @@ function Profile() {
                         </div>
 
                         <div className={style.valueInfor}>
-                            <input type="text"  value={"Nguyen Hoang Luan"}/>
-                            <input type="text" value={"nhluan.official@gmail.com"}/>
+                            <input type="text"  value={data.userName}/>
+                            <input type="text" value={data.email}/>
                             <input type="text" value={"06/07/2002"}/>
                             <input type="text" value={"700+"}/>
                             <input type="text" value={"***************"}/>

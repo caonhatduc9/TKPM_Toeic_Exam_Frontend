@@ -38,7 +38,7 @@ const SignIn = () => {
                 console.log(res.data);
 
                 if (res.data.status === "success") {
-                    window.localStorage.setItem('sigin', JSON.stringify(res.data));
+                    window.localStorage.setItem('signin', JSON.stringify(res.data));
                     navigate("/");
 
                 } else {

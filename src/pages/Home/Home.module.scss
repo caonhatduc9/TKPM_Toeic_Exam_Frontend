@@ -85,7 +85,7 @@
 
     .Members {
         height: max-content;
-        background-color: #D9D9D9;
+        background-color: #E3F4F4;
         margin-top: 3rem;
         padding-bottom: 8rem;
 
@@ -115,6 +115,8 @@
                 align-items: center;
                 border-radius: 2rem;
                 padding: 2rem ; 
+                border: 1px solid #526D82;
+                box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
                 img {
                     width: 25%;
                     border-radius: 50%;
