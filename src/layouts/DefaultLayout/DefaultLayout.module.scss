@@ -1,11 +1,19 @@
 .wrapper {
-
+  position: relative;
+  min-height: 100vh;
 }
 
 .container {
-
+  position: relative;
+  min-height: calc(100vh - 430px);
+  display: flex;
+  flex-direction: column;
 }
 
 .content {
-    
+  width: 100%;
+  // max-width: 1170px;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  margin: 0 auto;
 }

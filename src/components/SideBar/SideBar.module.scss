@@ -1,0 +1,48 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 10%;
+  background-color: lightgray;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+
+  .logo {
+    text-align: center;
+    img {
+      width: 70%;
+      height: 100%;
+    }
+  }
+
+  .a {
+    background-color: blueviolet;
+    margin: 1rem 0rem;
+    text-align: center;
+    color: white;
+  }
+
+  // .sidebar_sticky {
+  //   position: sticky;
+  //   top: 48px;
+  //   height: calc(100vh - 48px);
+  //   padding-top: .5rem;
+  //   overflow-x: hidden;
+  //   overflow-y: auto;
+  // }
+
+  .nav_item {
+    margin: 1rem 0rem;
+    text-align: center;
+
+  }
+
+  .nav_item:hover {
+    cursor: pointer;
+    background-color: blueviolet;
+    color: white;
+  }
+}

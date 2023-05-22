@@ -1,0 +1,69 @@
+.app {
+    // width: 80%; 
+    display: flex;
+    margin-top: 6rem;
+    // align-items: center;
+    // flex-direction: column;
+    // justify-content: space-around;
+
+    .categories {
+        width: 20%;
+        margin: 0 10%;
+
+        .category {
+            font-size: 3rem;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        >p {
+            font-weight: bold;
+        }
+
+        li {
+            list-style: none;
+        }
+    }
+
+
+    .list_blog {
+        width: 40%;
+        margin-top: 2rem;
+       
+        .blog {
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            display: flex;
+            cursor: pointer;
+
+            div {
+                margin-left: 2rem;
+
+                .title {
+                    font-weight: bold;
+                    text-align: start;
+                }
+
+                .subtitle {
+                    font-weight: 10;
+                }
+            }
+
+            .image {
+                // object-fit: fill;
+                width: 150px;
+                height: 100px;
+            }
+
+        }
+
+        .blog:hover {
+            .title {
+                color: blue;
+            }
+        }
+    }
+}

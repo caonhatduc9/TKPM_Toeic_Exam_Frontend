@@ -1,0 +1,138 @@
+.wrapper {
+
+    .intro {
+        background-image: url("https://img.lovepik.com//photo/40005/1911.jpg_860.jpg");
+        height: 510px;
+        background-repeat: no-repeat;
+        width: max-content;
+        background-size: cover;
+        width: 100vw;   
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 5rem;
+        font-size: 2rem;
+        color: white;
+        font-weight: 700;
+    }
+
+    .examTest {
+        margin-top: 4rem;
+
+        h2 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+    }
+
+    .educationIntro {
+        display: flex;
+        justify-content: space-between;
+
+        div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 25%;
+            margin-left: 12rem;
+        }
+
+        img {
+            width: 45%;
+            margin-right: 5rem;
+        }
+    }
+
+    .testIntro {
+        display: flex;
+        padding-left: 5rem;
+        justify-content: space-around;
+        background-image: url("https://png.pngtree.com/thumb_back/fh260/background/20210408/pngtree-sky-blue-background-design-template-image_599644.jpg");
+        
+
+        div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+           
+        }
+
+        a {
+            width: max-content;
+            height: max-content;
+            padding: 1rem;
+            background-color: #F7C32E;
+            border-radius: 1rem;
+            color: black;
+            margin: auto;
+        }
+
+        a:hover {
+            opacity: 0.8;
+            color: white;
+            font-weight: 600;
+        }
+
+        img {
+            width: 25%;
+
+        }
+
+    }
+
+    .Members {
+        height: max-content;
+        background-color: #E3F4F4;
+        margin-top: 3rem;
+        padding-bottom: 8rem;
+
+        .title {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 2rem;
+
+            h2 {
+                font-weight: 700;
+                font-size: 2.5rem;
+            }
+        }
+
+        .listMember {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 3rem;
+            margin-right: 2rem;
+
+            .cardMember {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border-radius: 2rem;
+                padding: 2rem ; 
+                border: 1px solid #526D82;
+                box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+                img {
+                    width: 25%;
+                    border-radius: 50%;
+                }
+
+                width: 20vw;
+                background-color: white;
+
+                h2 {
+                    font-size: 2rem;
+                    margin-top: 1rem;
+                    font-weight: 600;
+                }
+
+
+            }
+        }
+    }
+}
