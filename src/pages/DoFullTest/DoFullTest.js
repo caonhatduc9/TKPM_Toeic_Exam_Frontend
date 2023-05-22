@@ -102,6 +102,7 @@ const DoFullTest = () => {
   };
 
   const handleDataQuestionGroup = (data) => {
+    console.log(data);
     if (data) {
       if (
         data.name === "Part 1" ||
@@ -123,6 +124,7 @@ const DoFullTest = () => {
       }
     }
   };
+  console.log(999, listParts[0]?.partQuestions[0]?.questions[0]?.assets);
   return (
     <Container fluid>
       <div className={styles.heading}>
@@ -133,7 +135,11 @@ const DoFullTest = () => {
       </div>
       <div className={styles.testWrapper}>
         <div className={styles.testContent}>
-          <Audio />
+          <Audio
+            source={
+              listParts[0]?.partQuestions[0]?.questions[0]?.assets[1]?.url
+            }
+          />
           <div className={styles.nav}>
             <Tabs selectedIndex={tabIndex} onSelect={(i) => handleSelectTab(i)}>
               <TabList>

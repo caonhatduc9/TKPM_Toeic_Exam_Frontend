@@ -8,9 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 import styles from "./Audio.module.scss";
 const Audio = ({ ...props }) => {
-  const {
-    source = "https://study4.com/media/tez_media1/sound/ets_toeic_2022_test_2_32_34.mp3",
-  } = props;
+  // = "https://study4.com/media/tez_media1/sound/ets_toeic_2022_test_2_32_34.mp3"
+  const { source } = props;
   const [progress, setProgress] = useState(0);
   const [volume, setVolume] = useState(50);
   const [showPause, setShowPause] = useState(false);
@@ -48,6 +47,7 @@ const Audio = ({ ...props }) => {
     audioRef.current.volume = volume / 100;
 
     intervalRef.current = setInterval(() => {
+      // console.log(audioRef.current);
       if (audioRef.current.ended) {
         audioRef.current.pause();
         clearInterval(intervalRef.current);

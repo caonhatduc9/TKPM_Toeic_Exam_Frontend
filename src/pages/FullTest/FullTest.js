@@ -22,66 +22,10 @@ const FullTest = () => {
         console.log(err);
       });
   }, []);
-  const listFullTest = [
-    {
-      title: "ETS TOEIC 2022 Test 1",
-      des: "ETS TOEIC 2022 Test 1",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-    {
-      title: "ETS TOEIC 2022 Test 2",
-      des: "ETS TOEIC 2022 Test 2",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-    {
-      title: "ETS TOEIC 2022 Test 3",
-      des: "ETS TOEIC 2022 Test 3",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-    {
-      title: "ETS TOEIC 2022 Test 4",
-      des: "ETS TOEIC 2022 Test 4",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-    {
-      title: "ETS TOEIC 2022 Test 5",
-      des: "ETS TOEIC 2022 Test 5",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-    {
-      title: "ETS TOEIC 2022 Test 6",
-      des: "ETS TOEIC 2022 Test 6",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-    {
-      title: "ETS TOEIC 2022 Test 7",
-      des: "ETS TOEIC 2022 Test 7",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-    {
-      title: "ETS TOEIC 2022 Test 8",
-      des: "ETS TOEIC 2022 Test 8",
-      time: 120,
-      countUser: 9999,
-      numQues: 120,
-    },
-  ];
+
   return (
-    <Container fluid="md" style={{ marginTop: "10rem" }}>
+    <Container fluid="md" style={{ marginTop: "20px" }}>
+      <h2 className="title-list-test">List FullTest</h2>
       <Row>
         {fullTest &&
           fullTest.length > 0 &&

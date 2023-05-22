@@ -143,11 +143,13 @@ const DoMiniTest = () => {
             let temp = [];
             temp = [...temp, ...item.questions];
             temp[0].contentQuestion = item.content;
+            temp[0].assets = item.assets;
             if (data[0]?.name === "Part 3" || data[0]?.name === "Part 4") {
               temp[0].isListening = true;
             }
             listQues.push(...temp);
           });
+        console.log(tempQuestionGroup, listQues);
         return listQues;
       }
     }

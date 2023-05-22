@@ -137,8 +137,26 @@ const QuestionGroup = ({ ...props }) => {
                 <div key={index}>
                   <div className={styles.contextWrapper}>
                     <div className={styles.contextContent}>
-                      {!isFullTest && ques?.isListening ? <Audio /> : <></>}
-                      {ques?.assets?.[0]?.url ? (
+                      {!isFullTest && ques?.isListening ? (
+                        <Audio
+                          source={
+                            ques?.assets?.[0]?.url &&
+                            ques?.assets?.[0]?.type === "AUDIO"
+                              ? ques?.assets?.[0]?.url
+                              : ques?.assets?.[1]?.url &&
+                                ques?.assets?.[1]?.type === "AUDIO"
+                              ? ques?.assets?.[1]?.url
+                              : ques?.assets?.url &&
+                                ques?.assets?.type === "AUDIO"
+                              ? ques?.assets?.url
+                              : ""
+                          }
+                        />
+                      ) : (
+                        <></>
+                      )}
+                      {ques?.assets?.[0]?.url &&
+                      ques?.assets?.[0]?.type === "IMAGE" ? (
                         <Image
                           src={ques?.assets?.[0]?.url}
                           alt="image"
@@ -149,7 +167,8 @@ const QuestionGroup = ({ ...props }) => {
                       )}
                     </div>
                     <div className={styles.contextTranscript}>
-                      {isShowResult && ques?.isListening ? (
+                      {isShowResult &&
+                      (isFullTest ? isListening : ques?.isListening) ? (
                         <div className={styles.transcriptContent}>
                           {ques?.transcript ? <p>Transcript:</p> : <></>}
                           <div
