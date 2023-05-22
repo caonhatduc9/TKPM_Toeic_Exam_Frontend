@@ -16,16 +16,18 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 const ResultDetail = () => {
   const { slug, id } = useParams();
+  console.log(useParams());
 
   const [listParts, setListParts] = useState([]);
   const [resultDetail, setResultDetail] = useState([]);
-
   const [listResult, setListResult] = useState([]);
   const [tabIndex, setTabIndex] = useState(0);
   const [isTimeup, setIsTimeup] = useState(true);
   const timer = useRef(0);
+  const [cookies, setCookie, removeCookie] = useCookies(["idFullTest"]);
   const navigate = useNavigate();
   useEffect(() => {
     axios
@@ -42,22 +44,28 @@ const ResultDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-    axios
-      .get(`http://tinhoccaogiaphat.com/tests/full-test/result/${id}/detail`, {
-        headers: {
-          accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        const userRes = response.data.data?.cleanedDataPartsInResult;
-        const resDetail = response.data.data?.cleanedDataResultDetail;
-        setListResult(userRes);
-        setResultDetail(resDetail);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (cookies) {
+      axios
+        .get(
+          `http://tinhoccaogiaphat.com/tests/full-test/result/${cookies.idFullTest}/detail`,
+          {
+            headers: {
+              accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data.data);
+          const userRes = response.data.data?.studentAnswer;
+          const resDetail = response.data.data?.answer;
+          setListResult(userRes);
+          setResultDetail(resDetail);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   const handleSelectTab = (index) => {

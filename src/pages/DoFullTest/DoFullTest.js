@@ -16,6 +16,7 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 const DoFullTest = () => {
   const [listParts, setListParts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,6 +27,7 @@ const DoFullTest = () => {
   const timeStart = useRef();
   const timeEnd = useRef();
   const timer = useRef(0);
+  const [cookies, setCookie, removeCookie] = useCookies(["idFullTest"]);
   useEffect(() => {
     timeStart.current = new Date().toUTCString();
     axios
@@ -54,7 +56,7 @@ const DoFullTest = () => {
       // console.log("Done");
       timeEnd.current = new Date().toUTCString();
       const dataSubmit = {
-        type: "fulltest",
+        type: "FULL_TEST",
         idTest: id,
         userResult: [...listResult],
         timeStart: timeStart.current,
@@ -62,7 +64,7 @@ const DoFullTest = () => {
       };
       await axios
         .post(
-          `http://tinhoccaogiaphat.com/tests/full-test/result/${id}`,
+          `http://tinhoccaogiaphat.com/tests/result/${id}`,
           dataSubmit
           // {
           //   headers: {
@@ -72,8 +74,14 @@ const DoFullTest = () => {
           // }
         )
         .then((res) => {
-          // console.log("res", res);
-          navigate(`/fulltest/${slug}/result/${id}`);
+          console.log("res", res.data);
+          if (res.data.statusCode !== 500) {
+            navigate(`/fulltest/${slug}/result/${id}`);
+            if (cookies.idFullTest) {
+              removeCookie("idFullTest");
+            }
+            setCookie("idFullTest", res.data.testId);
+          }
         })
         .catch((err) => {
           console.log("error in request", err);
@@ -134,7 +142,7 @@ const DoFullTest = () => {
                   listParts.map((item, index) => {
                     // console.log(item?.parts?.name);
                     return (
-                      <Tab key={item.id} className={styles.itemLink}>
+                      <Tab key={index} className={styles.itemLink}>
                         {item?.name}
                       </Tab>
                     );
@@ -145,7 +153,7 @@ const DoFullTest = () => {
                 listParts.map((item, index) => {
                   // console.log(2222, item);
                   return (
-                    <TabPanel key={item.id}>
+                    <TabPanel key={index}>
                       <div className={styles.content}>
                         <QuestionGroup
                           part={item?.name}

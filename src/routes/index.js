@@ -41,7 +41,7 @@ const publicRoutes = [
   {
     path: "/admin/:type",
     component: Admin,
-    layout:NoLayout,
+    layout: NoLayout,
   },
   {
     path: "/blog",
@@ -86,11 +86,11 @@ const publicRoutes = [
     component: DoMiniTest,
   },
   {
-    path: "/minitest/:numpart/:titletest/result",
+    path: "/minitest/:numpart/:titletest/result/:id",
     component: Result,
   },
   {
-    path: "/minitest/:numpart/:titletest/result/detail",
+    path: "/minitest/:numpart/:titletest/result/detail/:id",
     component: ResultDetailMiniTest,
   },
   {

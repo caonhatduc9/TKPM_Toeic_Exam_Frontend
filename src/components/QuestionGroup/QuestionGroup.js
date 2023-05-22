@@ -6,107 +6,11 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Audio from "../Audio";
 const QuestionGroup = ({ ...props }) => {
-  const answersEx = [
-    {
-      value: "A",
-      title: "A move to a new a city",
-      name: "question-38131",
-      id: "question-38131-A",
-    },
-    {
-      value: "B",
-      title: "A move to a new a city",
-      name: "question-38131",
-      id: "question-38131-B",
-    },
-    {
-      value: "C",
-      title: "A move to a new a city",
-      name: "question-38131",
-      id: "question-38131-C",
-    },
-    {
-      value: "D",
-      title: "A move to a new a city",
-      name: "question-38131",
-      id: "question-38131-D",
-    },
-  ];
-  const answersEx2 = [
-    {
-      value: "A",
-      title: "A move to a new a city",
-      name: "question-38131B",
-      id: "question-38131-A2",
-    },
-    {
-      value: "B",
-      title: "A move to a new a city",
-      name: "question-38131B",
-      id: "question-38131-B2",
-    },
-    {
-      value: "C",
-      title: "A move to a new a city",
-      name: "question-38131B",
-      id: "question-38131-C2",
-    },
-    {
-      value: "D",
-      title: "A move to a new a city",
-      name: "question-38131B",
-      id: "question-38131-D2",
-    },
-  ];
-  const dataTemplatePart67 = [
-    {
-      id: 131,
-      ques: "To continue providing the highest level of ----- (131) to our corporate tenants, we have scheduled the south lobby restrooms for maintenance this weekend, May 13 and May 14. ----- (132)this time, the restrooms will be out of order, so tenants andtheir guests should instead use the facilities in the northlobby. We ----- (133) for any inconvenience this might cause.-----(134). Denville Property Management Partners",
-      answers: [
-        {
-          number: 131,
-          text: "What is the woman preparing for?",
-          answers: answersEx,
-        },
-        {
-          number: 132,
-          text: "What is the woman preparing for?",
-          answers: answersEx,
-        },
-        {
-          number: 133,
-          text: "What is the woman preparing for?",
-          answers: answersEx,
-        },
-      ],
-    },
-    {
-      id: 132,
-      ques: "To continue providing the highest level of ----- (131) to our corporate tenants, we have scheduled the south lobby restrooms for maintenance this weekend, May 13 and May 14. ----- (132)this time, the restrooms will be out of order, so tenants andtheir guests should instead use the facilities in the northlobby. We ----- (133) for any inconvenience this might cause.-----(134). Denville Property Management Partners",
-      answers: [
-        {
-          number: 134,
-          text: "What is the woman preparing for?",
-          answers: answersEx2,
-        },
-        {
-          number: 135,
-          text: "What is the woman preparing for?",
-          answers: answersEx2,
-        },
-        {
-          number: 136,
-          text: "What is the woman preparing for?",
-          answers: answersEx2,
-        },
-      ],
-    },
-  ];
   const {
     part,
     isListening,
     isTwoCols,
-    data = dataTemplatePart67,
+    data,
     listResult,
     onSetListResult,
     isFullTest,
@@ -233,11 +137,7 @@ const QuestionGroup = ({ ...props }) => {
                 <div key={index}>
                   <div className={styles.contextWrapper}>
                     <div className={styles.contextContent}>
-                      {!isFullTest && isListening && ques?.audioGroup ? (
-                        <Audio />
-                      ) : (
-                        <></>
-                      )}
+                      {!isFullTest && ques?.isListening ? <Audio /> : <></>}
                       {ques?.assets?.[0]?.url ? (
                         <Image
                           src={ques?.assets?.[0]?.url}
@@ -249,7 +149,7 @@ const QuestionGroup = ({ ...props }) => {
                       )}
                     </div>
                     <div className={styles.contextTranscript}>
-                      {isShowResult && isListening ? (
+                      {isShowResult && ques?.isListening ? (
                         <div className={styles.transcriptContent}>
                           {ques?.transcript ? <p>Transcript:</p> : <></>}
                           <div
