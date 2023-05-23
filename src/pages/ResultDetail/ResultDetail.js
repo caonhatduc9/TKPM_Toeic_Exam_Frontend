@@ -19,7 +19,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 const ResultDetail = () => {
   const { slug, id } = useParams();
-  console.log(useParams());
+  // console.log(useParams());
 
   const [listParts, setListParts] = useState([]);
   const [resultDetail, setResultDetail] = useState([]);
@@ -56,7 +56,7 @@ const ResultDetail = () => {
           }
         )
         .then((response) => {
-          console.log(response.data.data);
+          // console.log(response.data.data);
           const userRes = response.data.data?.studentAnswer;
           const resDetail = response.data.data?.answer;
           setListResult(userRes);
