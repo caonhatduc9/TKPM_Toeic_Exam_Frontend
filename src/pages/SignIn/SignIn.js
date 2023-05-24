@@ -43,7 +43,7 @@ const SignIn = () => {
                 // setUserResponse(data);
                 // console.log(userResponse);
                 if (res.data.status === "success") {
-                    window.localStorage.setItem('sigin', JSON.stringify(res.data));
+                    window.localStorage.setItem('signin', JSON.stringify(res.data));
                     navigate("/");
                     console.log("dang nhap thanh cong");
 

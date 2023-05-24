@@ -43,10 +43,10 @@ function Footer() {
       <div className={styles.footerRight}>
       <img src={images.logo} alt="logo" width={50} height={50} />
       <div className={styles.logos}>
-      <i class="fa-brands fa-facebook" style={{color: "blue", marginRight: "1rem"}}></i>
-      <i class="fa-brands fa-twitter" style={{color: "#1da1f2", marginRight: "1rem"}}></i>
-      <i class="fa-brands fa-youtube" style={{color: "red", marginRight: "1rem"}}></i>
-      <i class="fa-brands fa-instagram" style={{color: "red", marginRight: "1rem"}}></i>
+      <i className="fa-brands fa-facebook" style={{color: "blue", marginRight: "1rem"}}></i>
+      <i className="fa-brands fa-twitter" style={{color: "#1da1f2", marginRight: "1rem"}}></i>
+      <i className="fa-brands fa-youtube" style={{color: "red", marginRight: "1rem"}}></i>
+      <i className="fa-brands fa-instagram" style={{color: "red", marginRight: "1rem"}}></i>
       </div>
       <h3 style={{fontSize: "1.5rem", fontWeight: "700"}}>
         Địa chỉ trụ sở: 

@@ -167,7 +167,7 @@ function Home() {
 
         <div className={style.listMember}>
           <div className={style.cardMember}>
-            <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/338402061_6032386890173225_610297980214389478_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ewueBPg_ndUAX-OAnH8&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfDyNoLdjmsi9oHAEIy6qQi-zPjiHosoBkPM-gYUvcyDGw&oe=646775C4" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png" />
             <h2>Nguyễn Hoàng Luân</h2>
             <p>
               "Toeic 990, có nhiều năm kinh nghiệm trong giải và giảng các đề thi"
@@ -175,7 +175,7 @@ function Home() {
           </div>
 
           <div className={style.cardMember}>
-            <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/338402061_6032386890173225_610297980214389478_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ewueBPg_ndUAX-OAnH8&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfDyNoLdjmsi9oHAEIy6qQi-zPjiHosoBkPM-gYUvcyDGw&oe=646775C4" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png" />
             <h2>Huỳnh Ngọc Sơn</h2>
             <p>
               "Toeic 990, có nhiều năm kinh nghiệm trong giải và giảng các đề thi"
@@ -183,7 +183,7 @@ function Home() {
           </div>
 
           <div className={style.cardMember}>
-            <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/338402061_6032386890173225_610297980214389478_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ewueBPg_ndUAX-OAnH8&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfDyNoLdjmsi9oHAEIy6qQi-zPjiHosoBkPM-gYUvcyDGw&oe=646775C4" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png" />
             <h2>Cao Nhật Đức</h2>
             <p>
               "Toeic 990, có nhiều năm kinh nghiệm trong giải và giảng các đề thi"
@@ -191,7 +191,7 @@ function Home() {
           </div>
 
           <div className={style.cardMember}>
-            <img src="https://scontent.fsgn5-3.fna.fbcdn.net/v/t39.30808-6/338402061_6032386890173225_610297980214389478_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ewueBPg_ndUAX-OAnH8&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfDyNoLdjmsi9oHAEIy6qQi-zPjiHosoBkPM-gYUvcyDGw&oe=646775C4" />
+            <img src="https://upload.wikimedia.org/wikipedia/en/b/bd/Doraemon_character.png" />
             <h2>Đoàn Hữu Lộc</h2>
             <p>
               "Toeic 990, có nhiều năm kinh nghiệm trong giải và giảng các đề thi"

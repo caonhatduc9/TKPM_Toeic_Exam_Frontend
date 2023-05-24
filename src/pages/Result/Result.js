@@ -15,8 +15,13 @@ import { faBan, faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faFlag } from "@fortawesome/free-regular-svg-icons";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 const Result = () => {
   const { slug, numpart, titletest, id } = useParams();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const idMini = searchParams.get("id");
+
   let titleTest;
   if (numpart && titletest) {
     titleTest =
@@ -25,32 +30,42 @@ const Result = () => {
   }
   const str = slug?.split("-")?.join(" ")?.toUpperCase();
   const title = str || titleTest || "ETS TOEIC 2022 Test 1";
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "idFullTest",
+    "idMiniTest",
+  ]);
 
   const navigate = useNavigate();
 
   const handleClickDetail = () => {
     if (numpart && titletest) {
-      navigate(`/minitest/${numpart}/${titletest}/result/detail`);
+      navigate(`/minitest/${numpart}/${titletest}/result/detail/${idMini}`);
     } else {
       navigate(`/fulltest/${slug}/result/detail/${id}`);
     }
   };
   const [result, setResult] = useState();
   useEffect(() => {
-    axios
-      .get(`http://tinhoccaogiaphat.com/tests/full-test/result/${id}`, {
-        headers: {
-          accept: "*/*",
-          "Content-Type": "*/*",
-        },
-      })
-      .then((response) => {
-        setResult(response.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (cookies) {
+      const url =
+        numpart && titletest
+          ? `http://tinhoccaogiaphat.com/tests/skill-test/result/${cookies.idMiniTest}`
+          : `http://tinhoccaogiaphat.com/tests/full-test/result/${cookies.idFullTest}`;
+      axios
+        .get(url, {
+          headers: {
+            accept: "*/*",
+            "Content-Type": "*/*",
+          },
+        })
+        .then((response) => {
+          setResult(response.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [cookies, numpart, titletest]);
 
   return (
     <Container fluid="lg">
@@ -69,7 +84,9 @@ const Result = () => {
                 <span>Kết quả làm bài</span>
                 <span>
                   {result?.totalCorrect} /{" "}
-                  {result?.totalCorrect + result?.totalIncorrect}
+                  {result?.totalCorrect +
+                    result?.totalIncorrect +
+                    result?.totalSkipped}
                 </span>
               </div>
               <div className={styles.statusPercent}>

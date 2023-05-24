@@ -11,24 +11,27 @@ import {
   QuestionGroup,
 } from "../../components";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 const DoMiniTest = () => {
   const [listResult, setListResult] = useState([]);
   const [isTimeup, setIsTimeup] = useState(false);
+  const [idPart, setIdPart] = useState();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const id = searchParams.get("id");
   const timer = useRef(0);
+  const timeStart = useRef();
+  const timeEnd = useRef();
   const { numpart, titletest } = useParams();
   const titleTest =
     `PART ${numpart.charAt(numpart.length - 1)} - ` +
     titletest?.split("-")?.join(" ")?.toUpperCase();
   const navigate = useNavigate();
-  // useEffect(() => {
-  //   console.log(111, listResult);
-  // }, [listResult]);
   const [listPart, setListPart] = useState([]);
+  const [cookies, setCookie, removeCookie] = useCookies(["idFullTest"]);
   useEffect(() => {
+    timeStart.current = new Date().toUTCString();
     axios
       .get(
         `http://tinhoccaogiaphat.com/tests/skill-test/part${numPart}/${id}`,
@@ -41,6 +44,7 @@ const DoMiniTest = () => {
       )
       .then((response) => {
         const res = response?.data?.data[0];
+        // console.log(response?.data?.data[0]);
         if (
           res?.parts[0]?.name === "Part 1" ||
           res?.parts[0]?.name === "Part 2" ||
@@ -54,16 +58,49 @@ const DoMiniTest = () => {
           res.parts[0].isTwoCols = true;
         }
         setListPart(res?.parts);
+        setIdPart(res?.parts[0]?.id);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const handleClickSubmit = () => {
+  const handleClickSubmit = async () => {
     if (window.confirm("Bạn có chắc chắn muốn nộp bài?") === true) {
-      // console.log("Done");
-      navigate(`/minitest/${numpart}/${titletest}/result`);
+      timeEnd.current = new Date().toUTCString();
+      const dataSubmit = {
+        type: "SKILL_TEST",
+        idTest: idPart,
+        userResult: [...listResult],
+        timeStart: timeStart.current,
+        timeEnd: timeEnd.current,
+      };
+
+      await axios
+        .post(
+          `http://tinhoccaogiaphat.com/tests/result/1?id=${id}`,
+          dataSubmit
+          // {
+          //   headers: {
+          //     accept: "*/*",
+          //     "Content-Type": "*/*",
+          //   },
+          // }
+        )
+        .then((res) => {
+          if (res.data.statusCode !== 500) {
+            navigate(
+              `/minitest/${numpart}/${titletest}/result/${idPart}?id=${id}`
+            );
+            if (cookies.idFullTest) {
+              removeCookie("idMiniTest");
+            }
+            setCookie("idMiniTest", res.data.testId);
+          }
+        })
+        .catch((err) => {
+          console.log("error in request", err);
+        });
     }
   };
   const handleTimeup = useCallback(() => {
@@ -80,8 +117,17 @@ const DoMiniTest = () => {
   };
   const numPart = +numpart.charAt(numpart.length - 1);
 
+  const handleIsListening = (data) => {
+    data.forEach((item) => {
+      item.isListening = true;
+    });
+  };
+
   const handleDataQuestionGroup = (data) => {
     if (data) {
+      if (data[0]?.name === "Part 1" || data[0]?.name === "Part 2") {
+        handleIsListening(data[0]?.partQuestions[0]?.questions);
+      }
       if (
         data[0]?.name === "Part 1" ||
         data[0]?.name === "Part 2" ||
@@ -96,6 +142,10 @@ const DoMiniTest = () => {
             let temp = [];
             temp = [...temp, ...item.questions];
             temp[0].contentQuestion = item.content;
+            temp[0].assets = item.assets;
+            if (data[0]?.name === "Part 3" || data[0]?.name === "Part 4") {
+              temp[0].isListening = true;
+            }
             listQues.push(...temp);
           });
         return listQues;
