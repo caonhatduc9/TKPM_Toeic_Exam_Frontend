@@ -25,7 +25,7 @@ const Header = () => {
         </a>
         <div className={styles.navLeft}>
           <a className={styles.button} href="http://localhost:3000/fulltest">Đề thi Online</a>
-          <a className={styles.button} href="#">Luyện tập kỹ năng</a>
+          <a className={styles.button} href="http://localhost:3000/minitest">Luyện tập kỹ năng</a>
           <a className={styles.button} href="http://localhost:3000/blog">Bài Blog</a>
           <a className={styles.button} href="#">Ghi chú</a>
           <a className={styles.button} href="http://localhost:3000/signin">Đăng nhập</a>

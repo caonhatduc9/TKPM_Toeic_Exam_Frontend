@@ -62,10 +62,9 @@ const UploadTest = () => {
     };
     const handleImage6Change = (event) => {
         const file = event.target.files[0];
-        setImage6(file);
+        setImage6(file);    
         setLabelImage6(file.name);
     };
-
 
     const handleSubmit = (event) => {
         const formData = new FormData();
@@ -105,7 +104,7 @@ const UploadTest = () => {
                     <p>Test</p>
                     <input type="file" name="test" id="test" className={style.inputfile} accept=".csv" onChange={handleTestChange} />
                     <label for="test">{labelFile}</label>
-                </div>
+        </div>
                 <div>
 
                     <p>Audio</p>

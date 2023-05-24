@@ -21,7 +21,7 @@ const SideBar = () => {
                 </Nav.Link>
                 {navitem.map((item) => {
                     if (type == item.handle)
-                        return <Nav.Item className={style.a}><p>{item.content}</p></Nav.Item>;
+                        return <Nav.Item className={style.a}><p className="fixP">{item.content}</p></Nav.Item>;
                     else
                         return <Nav.Item className={style.nav_item} onClick={() => { navigate('/admin/' + item.handle); }}><p>{item.content}</p></Nav.Item>;
 

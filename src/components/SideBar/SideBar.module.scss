@@ -37,12 +37,22 @@
   .nav_item {
     margin: 1rem 0rem;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      margin-bottom: 0 !important;
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+    }
 
   }
 
   .nav_item:hover {
     cursor: pointer;
-    background-color: blueviolet;
+    background-color: rgb(142, 65, 214);
     color: white;
+    opacity: 0.8;
   }
 }
