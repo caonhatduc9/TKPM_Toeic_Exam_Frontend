@@ -33,10 +33,13 @@ const publicRoutes = [
   {
     path: "/signin",
     component: SignIn,
+    layout: NoLayout,
   },
   {
     path: "/signup",
     component: SignUp,
+    layout: NoLayout,
+
   },
   {
     path: "/admin/:type",

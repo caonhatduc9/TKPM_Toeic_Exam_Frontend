@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import style from "./UploadTest.module.scss"
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const UploadTest = () => {
+    const navigate = useNavigate();
     const [TestFile, setTestFile] = useState(null);
     const [labelFile, setLabelTestfile] = useState("Choose a file test");
     const [audioFile, setAudioFile] = useState(null);
@@ -62,23 +65,45 @@ const UploadTest = () => {
         setImage6(file);
         setLabelImage6(file.name);
     };
-    
+
 
     const handleSubmit = (event) => {
+        const formData = new FormData();
+        formData.append('excel', TestFile);
+        formData.append('audio', audioFile);
+        formData.append('image', image1,image2,image3,image4,image5,image6);
+        // formData.append('image', [image1, image2, image3, image4, image5, image6]);
+
         event.preventDefault();
+        console.log(formData);
+        // console.log(formData.get('image1'));
+        // console.log(image1);
 
+        axios.post("http://tinhoccaogiaphat.com/admin/exam", formData
+        , {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }
+        )
+            .then((res) => {
+                console.log(res.data);
 
-        
-
+                // window.localStorage.setItem('addtest', 'yes');
+                // navigate('/admin/managetest');
+            })
+            .catch((err) => {
+                console.error(err);
+            });
     };
 
 
     return (
-        <form className={style.upload_form} onSubmit={handleSubmit} >
+        <form className={style.upload_form} onSubmit={handleSubmit} enctype="multipart/form-data" >
             <div className={style.form_group}>
                 <div>
                     <p>Test</p>
-                    <input type="file"  name="test" id="test" className={style.inputfile} accept=".csv" onChange={handleTestChange} />
+                    <input type="file" name="test" id="test" className={style.inputfile} accept=".csv" onChange={handleTestChange} />
                     <label for="test">{labelFile}</label>
                 </div>
                 <div>

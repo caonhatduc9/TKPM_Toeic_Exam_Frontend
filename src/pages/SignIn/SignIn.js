@@ -9,6 +9,9 @@ const SignIn = () => {
     const [errorMessagesPassword, setErrorMessagesPassword] = useState("");
     const [userResponse, setUserResponse] = useState();
     const navigate = useNavigate();
+    // useEffect (()=> {
+    //     console.log(11111, userResponse)
+    // },[userResponse])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -36,10 +39,13 @@ const SignIn = () => {
         axios.post("http://tinhoccaogiaphat.com/auth/login", { email: emailValue, password: passwordValue })
             .then((res) => {
                 console.log(res.data);
-
+                // const { data } = res.data;
+                // setUserResponse(data);
+                // console.log(userResponse);
                 if (res.data.status === "success") {
                     window.localStorage.setItem('sigin', JSON.stringify(res.data));
                     navigate("/");
+                    console.log("dang nhap thanh cong");
 
                 } else {
                     setErrorMessagesPassword("Password isn't correct");
