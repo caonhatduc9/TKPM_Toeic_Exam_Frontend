@@ -23,7 +23,7 @@ function Profile() {
                     <div>
                         <h3 className={style.ClickedTab}>Thông tin</h3>
                         {/* <a href="http://localhost:3000/historyexam">Danh sách bài thi</a> */}
-                        <a onClick={()=>{navigate("historyexam")}}>Danh sách bài thi</a>
+                        <a onClick={()=>{navigate("/historyexam")}}>Danh sách bài thi</a>
                         <h3>Thông báo</h3>
                         <h3>Feedback</h3>
                         <h3>Báo cáo lỗi</h3>
