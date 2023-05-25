@@ -20,3 +20,4 @@ export { default as ManageUser } from "./ManageUser";
 export { default as Managetest } from "./ManageTest";
 export { default as UploadTest } from "./UploadTest";
 export { default as UploadBlog } from "./UploadBlog";
+export { default as HistoryExam } from "./HistoryExam";

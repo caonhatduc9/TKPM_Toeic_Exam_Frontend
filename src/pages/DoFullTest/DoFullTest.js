@@ -21,6 +21,9 @@ const DoFullTest = () => {
   const [listParts, setListParts] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const id = searchParams.get("id");
+  const checkLogin = JSON.parse(window.localStorage.getItem("signin"));
+  const userId = checkLogin.data.userId; 
+  
   const [listResult, setListResult] = useState([]);
   const [tabIndex, setTabIndex] = useState(0);
   const [isTimeup, setIsTimeup] = useState(false);
@@ -28,6 +31,7 @@ const DoFullTest = () => {
   const timeEnd = useRef();
   const timer = useRef(0);
   const [cookies, setCookie, removeCookie] = useCookies(["idFullTest"]);
+  
   useEffect(() => {
     timeStart.current = new Date().toUTCString();
     axios
@@ -64,7 +68,7 @@ const DoFullTest = () => {
       };
       await axios
         .post(
-          `http://tinhoccaogiaphat.com/tests/result/${id}`,
+          `http://tinhoccaogiaphat.com/tests/result/${userId}`,
           dataSubmit
           // {
           //   headers: {
