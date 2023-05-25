@@ -2,8 +2,8 @@ import { Nav } from 'react-bootstrap';
 import style from './SideBar.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import images from '../../assets/images';
-const SideBar = () => {
-    const { type } = useParams();
+const SideBar = (props) => {
+    const { type } = props;
     const navitem = [
         { content: "Dashboard Test", handle: "managetest", },
         { content: "Dashboard User", handle: "manageuser" },

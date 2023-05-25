@@ -9,10 +9,14 @@ export { default as ChooseMiniTest } from "./ChooseMiniTest";
 export { default as Result } from "./Result";
 export {default as SignIn} from "./SignIn";
 export {default as SignUp} from "./SignUp";
-export {default as Admin} from "./Admin";
 export {default as Blog} from "./Blog";
 export {default as DetailBlog} from "./DetailBlog";
 
 export { default as ResultDetail } from "./ResultDetail";
 export { default as ResultDetailMiniTest } from "./ResultDetailMiniTest";
 export { default as Profile } from "./Profile";
+export { default as ManageBlog } from "./ManageBlog";
+export { default as ManageUser } from "./ManageUser";
+export { default as Managetest } from "./ManageTest";
+export { default as UploadTest } from "./UploadTest";
+export { default as UploadBlog } from "./UploadBlog";

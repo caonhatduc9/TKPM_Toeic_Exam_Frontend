@@ -44,7 +44,9 @@ const SignIn = () => {
                 // console.log(userResponse);
                 if (res.data.status === "success") {
                     window.localStorage.setItem('signin', JSON.stringify(res.data));
-                    navigate("/");
+                    if (emailValue == "caoduc4work@gmail.com")
+                        navigate("/admin/managetest");
+                    else navigate("/");
                     console.log("dang nhap thanh cong");
 
                 } else {

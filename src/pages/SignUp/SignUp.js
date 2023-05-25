@@ -33,6 +33,7 @@ const SignUp = () => {
                 console.log(res.data);
 
                 if (res.data.status == "success") {
+                    alert("signup success! Please check your gmail to get password!")
                     navigate('/signin');
                 }
                 else setErrorMessagesEmail("Email has exist");

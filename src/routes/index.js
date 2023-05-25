@@ -12,13 +12,17 @@ import {
   DoMiniTest,
   SignIn,
   SignUp,
-  Admin,
   Blog,
   DetailBlog,
   ResultDetail,
   ResultDetailMiniTest,
   NotFound,
   Profile,
+  ManageBlog,
+  Managetest,
+  ManageUser,
+  UploadBlog, 
+  UploadTest,
 } from "../pages";
 
 const publicRoutes = [
@@ -42,8 +46,28 @@ const publicRoutes = [
 
   },
   {
-    path: "/admin/:type",
-    component: Admin,
+    path: "/admin/manageblog",
+    component: ManageBlog,
+    layout: NoLayout,
+  },
+  {
+    path: "/admin/managetest",
+    component: Managetest,
+    layout: NoLayout,
+  },
+  {
+    path: "/admin/manageuser",
+    component: ManageUser,
+    layout: NoLayout,
+  },
+  {
+    path: "/admin/uploadtest",
+    component: UploadTest,
+    layout: NoLayout,
+  },
+  {
+    path: "/admin/uploadblog",
+    component: UploadBlog,
     layout: NoLayout,
   },
   {
