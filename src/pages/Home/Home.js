@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "../../components/Card/Card";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -66,6 +67,9 @@ function Home() {
       numQues: 120,
     },
   ];
+
+  const navigate = useNavigate();
+
   return (
     <div className={style.wrapper}>
       <div className={style.intro}>
@@ -149,7 +153,8 @@ function Home() {
 
 
           </div>
-          <a href="http://localhost:3000/fulltest">Luyện tập ngay</a>
+          {/* <a href="http://localhost:3000/fulltest">Luyện tập ngay</a> */}
+          <a onClick={()=>{navigate("/fulltest")}}>Luyện tập ngay</a>
         </div>
 
 

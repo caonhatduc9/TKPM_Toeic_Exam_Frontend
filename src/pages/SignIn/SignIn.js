@@ -32,9 +32,9 @@ const SignIn = () => {
         if (passwordValue === "") {
             setErrorMessagesPassword("Password cann't be blank");
         }
-        if (!isValidPass(passwordValue)) {
-            setErrorMessagesPassword("Invalid password");
-        }
+        // if (!isValidPass(passwordValue)) {
+        //     setErrorMessagesPassword("Invalid password");
+        // }
 
         axios.post("http://tinhoccaogiaphat.com/auth/login", { email: emailValue, password: passwordValue })
             .then((res) => {
@@ -44,7 +44,9 @@ const SignIn = () => {
                 // console.log(userResponse);
                 if (res.data.status === "success") {
                     window.localStorage.setItem('signin', JSON.stringify(res.data));
-                    navigate("/");
+                    if (emailValue == "caoduc4work@gmail.com")
+                        navigate("/admin/managetest");
+                    else navigate("/");
                     console.log("dang nhap thanh cong");
 
                 } else {
@@ -54,6 +56,8 @@ const SignIn = () => {
             })
             .catch((err) => {
                 console.error(err);
+                setErrorMessagesPassword("Password isn't correct");
+                setErrorMessagesEmail("Email isn't exist");
             });
 
 
@@ -63,11 +67,11 @@ const SignIn = () => {
         return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
     };
 
-    const isValidPass = (password) => {
-        const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    // const isValidPass = (password) => {
+    //     const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
 
-        return regex.test(password);
-    };
+    //     return regex.test(password);
+    // };
 
     const renderErrorMessage = (name) => {
         if (name === "email") {
