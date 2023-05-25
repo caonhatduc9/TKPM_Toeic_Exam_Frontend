@@ -17,14 +17,14 @@ function ManageTest(props) {
     const [data_test, setData_test] = useState([]);
     const navigate = useNavigate();
 
-    // console.log(window.localStorage.getItem('signin'));
-    const signin = window.localStorage.getItem('signin');
-    if(signin!=null){
-        const checkAdmin =JSON.parse();
-        if(checkAdmin.data.email !== "caoduc4work@gmail.com"){
-            navigate('/');
-        }
-    }
+    // // console.log(window.localStorage.getItem('signin'));
+    // const signin = window.localStorage.getItem('signin');
+    // if(signin!=null){
+    //     const checkAdmin =JSON.parse();
+    //     if(checkAdmin.data.email !== "caoduc4work@gmail.com"){
+    //         navigate('/');
+    //     }
+    // }
 
     useEffect(() => {
         axios.get('http://tinhoccaogiaphat.com/admin/exam')

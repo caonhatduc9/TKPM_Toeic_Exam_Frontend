@@ -27,13 +27,13 @@ const UploadTest = () => {
 
 
     // console.log(window.localStorage.getItem('signin'));
-    const signin = window.localStorage.getItem('signin');
-    if(signin!=null){
-        const checkAdmin =JSON.parse();
-        if(checkAdmin.data.email !== "caoduc4work@gmail.com"){
-            navigate('/');
-        }
-    }
+    // const signin = window.localStorage.getItem('signin');
+    // if(signin!=null){
+    //     const checkAdmin =JSON.parse();
+    //     if(checkAdmin.data.email !== "caoduc4work@gmail.com"){
+    //         navigate('/');
+    //     }
+    // }
     
     const handleTestChange = (event) => {
         const file = event.target.files[0];
@@ -84,11 +84,15 @@ const UploadTest = () => {
 
 
     const handleSubmit = (event) => {
+        const images = [image1, image2, image3, image4, image5, image6];
         const formData = new FormData();
+        images.forEach((image, index) => {
+            formData.append('image', image);
+          });
         formData.append('name', testName);
         formData.append('excel', TestFile);
         formData.append('audio', audioFile);
-        formData.append('image', image1, image2, image3, image4, image5, image6);
+        // formData.append('image', image1, image2, image3, image4, image5, image6);
         // formData.append('image', [image1, image2, image3, image4, image5, image6]);
 
         event.preventDefault();
