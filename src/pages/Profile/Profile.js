@@ -1,4 +1,5 @@
 
+import { useNavigate } from "react-router-dom";
 import style from "./Profile.module.scss"
 
 function notifyChange() {
@@ -11,7 +12,7 @@ function Profile() {
 
     const data = JSON.parse(window.localStorage.getItem("signin")).data; 
     console.log("data: ", data);
-
+    const navigate = useNavigate();
 
     return (
         <div className={style.wrapper}>
@@ -21,7 +22,8 @@ function Profile() {
                 <div className={style.tabContent}>
                     <div>
                         <h3 className={style.ClickedTab}>Thông tin</h3>
-                        <a href="http://localhost:3000/historyexam">Danh sách bài thi</a>
+                        {/* <a href="http://localhost:3000/historyexam">Danh sách bài thi</a> */}
+                        <a onClick={()=>{navigate("historyexam")}}>Danh sách bài thi</a>
                         <h3>Thông báo</h3>
                         <h3>Feedback</h3>
                         <h3>Báo cáo lỗi</h3>

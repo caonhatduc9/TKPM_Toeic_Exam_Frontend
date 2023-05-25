@@ -2,7 +2,7 @@ import style from "./HistoryExam.module.scss"
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Await } from "react-router-dom";
+import { Await, useNavigate } from "react-router-dom";
 
 
 
@@ -63,7 +63,7 @@ function HistoryExam() {
             score: "725"
         }
     ]
-
+    const navigate = useNavigate();
     return (
         <div className={style.wrapper}>
             <h1>Cài đặt</h1>
@@ -71,7 +71,8 @@ function HistoryExam() {
             <div className={style.mainProfile}>
                 <div className={style.tabContent}>
                     <div>
-                        <a href="http://localhost:3000/profile">Thông tin</a>
+                        {/* <a href="http://localhost:3000/profile">Thông tin</a> */}
+                        <a onClick={()=>{navigate("/profile")}}>Thông tin</a>
                         <h3 className={style.ClickedTab}>Danh sách bài thi</h3>
                         <h3>Thông báo</h3>
                         <h3>Feedback</h3>

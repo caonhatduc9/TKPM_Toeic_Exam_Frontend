@@ -26,9 +26,9 @@ const UploadTest = () => {
     const [labelImage6, setLabelImage6] = useState("Choose a picture");
 
 
-    console.log(window.localStorage.getItem('signin'));
+    // console.log(window.localStorage.getItem('signin'));
     const checkAdmin =JSON.parse(window.localStorage.getItem('signin'));
-    if(checkAdmin.data.username !== "caoduc4work@gmail.com"|| checkAdmin==null){
+    if(checkAdmin.data.email !== "caoduc4work@gmail.com"|| checkAdmin==null){
         navigate('/');
     }
     const handleTestChange = (event) => {

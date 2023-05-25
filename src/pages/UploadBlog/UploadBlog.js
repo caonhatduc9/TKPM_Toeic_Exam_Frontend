@@ -13,9 +13,9 @@ const UploadBlog = () => {
     const [image, setImage] = useState(null);
 
 
-    console.log(window.localStorage.getItem('signin'));
+    // console.log(window.localStorage.getItem('signin'));
     const checkAdmin = JSON.parse(window.localStorage.getItem('signin'));
-    if (checkAdmin.data.username !== "caoduc4work@gmail.com"|| checkAdmin==null) {
+    if (checkAdmin.data.email !== "caoduc4work@gmail.com"|| checkAdmin==null) {
         navigate('/');
     }
 
