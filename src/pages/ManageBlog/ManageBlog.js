@@ -18,9 +18,12 @@ function ManageBlog(props) {
     const type = "manageblog";
 
     // console.log(window.localStorage.getItem('signin'));
-    const checkAdmin =JSON.parse(window.localStorage.getItem('signin'));
-    if(checkAdmin.data.email !== "caoduc4work@gmail.com"){
-        navigate('/');
+    const signin = window.localStorage.getItem('signin');
+    if (signin != null) {
+        const checkAdmin = JSON.parse();
+        if (checkAdmin.data.email !== "caoduc4work@gmail.com") {
+            navigate('/');
+        }
     }
 
 

@@ -27,10 +27,14 @@ const UploadTest = () => {
 
 
     // console.log(window.localStorage.getItem('signin'));
-    const checkAdmin =JSON.parse(window.localStorage.getItem('signin'));
-    if(checkAdmin.data.email !== "caoduc4work@gmail.com"|| checkAdmin==null){
-        navigate('/');
+    const signin = window.localStorage.getItem('signin');
+    if(signin!=null){
+        const checkAdmin =JSON.parse();
+        if(checkAdmin.data.email !== "caoduc4work@gmail.com"){
+            navigate('/');
+        }
     }
+    
     const handleTestChange = (event) => {
         const file = event.target.files[0];
         setTestFile(file);
@@ -104,7 +108,7 @@ const UploadTest = () => {
 
                 // window.localStorage.setItem('addtest', 'yes');
                 alert(res.data.message);
-                if (res.data.status == 200)
+                if (res.data.statusCode == 200)
                     navigate('/admin/managetest');
             })
             .catch((err) => {
