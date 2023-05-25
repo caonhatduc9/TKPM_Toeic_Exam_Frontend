@@ -1,6 +1,10 @@
 
 import style from "./Profile.module.scss"
 
+function notifyChange() {
+    alert("Thay đổi thông tin thành công!!!"); 
+}
+
 
 
 function Profile() {
@@ -17,7 +21,7 @@ function Profile() {
                 <div className={style.tabContent}>
                     <div>
                         <h3 className={style.ClickedTab}>Thông tin</h3>
-                        <h3>Danh sách bài thi</h3>
+                        <a href="http://localhost:3000/historyexam">Danh sách bài thi</a>
                         <h3>Thông báo</h3>
                         <h3>Feedback</h3>
                         <h3>Báo cáo lỗi</h3>
@@ -35,7 +39,7 @@ function Profile() {
 
                         <div className={style.listButton}>
                             <button>Hủy</button>
-                            <button style={{backgroundColor: "#344154", color: "white", fontWeight: "500"}}>Lưu</button>
+                            <button onClick={notifyChange} style={{backgroundColor: "#344154", color: "white", fontWeight: "500"}}>Lưu</button>
                         </div>
                     </div>
 

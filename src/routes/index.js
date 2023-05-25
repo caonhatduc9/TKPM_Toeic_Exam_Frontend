@@ -19,6 +19,7 @@ import {
   ResultDetailMiniTest,
   NotFound,
   Profile,
+  HistoryExam
 } from "../pages";
 
 const publicRoutes = [
@@ -100,6 +101,11 @@ const publicRoutes = [
     path: "/profile",
     component: Profile,
   },
+  {
+    path: "/HistoryExam", 
+    component: HistoryExam, 
+  }
+  
 ];
 
 const privateRoutes = [];
