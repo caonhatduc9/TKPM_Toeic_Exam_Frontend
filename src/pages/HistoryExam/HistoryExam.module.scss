@@ -1,0 +1,55 @@
+.wrapper {
+    margin-right: 7rem;
+    margin-left: 5rem;
+
+    .mainProfile {
+        margin-top: 3rem;
+        display: flex;
+        justify-content: flex-start;
+    }
+
+
+
+    .tabContent {
+        display: flex;
+        justify-content: space-between;
+        margin-right: 5rem;
+
+        a {
+            color: black;
+            font-size: calc(1.3rem + 0.3vw);
+            font-weight: 500;
+
+            &:hover {
+                opacity: 0.8;
+                color: #5C8984;
+                        }
+        }
+
+        .verticalLine {
+            width: 1px;
+            height: 50vh;
+            background-color: black;
+            margin-left: 3rem;
+        }
+
+        .ClickedTab {
+           width: max-content;
+           height: max-content;
+            background-color: #F4EBEB;
+            padding: 0.5rem 1rem 0.5rem 1rem; 
+            border: 1px solid gray;
+            border-radius: 1rem;
+        }
+    }
+
+    .infor {
+        margin-left: 5rem;
+        th {
+            width: 30rem;
+        }
+    }
+
+    
+    
+}
